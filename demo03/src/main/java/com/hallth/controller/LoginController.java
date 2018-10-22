@@ -63,6 +63,10 @@ public class LoginController {
          * 测试用逻辑
          * */
         if(!loginPassword.trim().isEmpty() && !loginUserName.trim().isEmpty()){
+            model.addAttribute("loginUser",loginUserName);
+            UserLoginInfo userLoginInfo = new UserLoginInfo();
+            userLoginInfo.setLoginUserName(loginUserName);
+            request.getSession().setAttribute("loginUserInfo",userLoginInfo);
             return "func";
         }
 
