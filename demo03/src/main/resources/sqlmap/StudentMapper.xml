@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hallth.mapper.StudentMapper">
+    <resultMap id="BaseResultMap" type="com.hallth.domain.Student">
+        <id column="stu_seq" property="stuSeq" jdbcType="INTEGER"/>
+        <result column="stu_code" property="stuCode" jdbcType="VARCHAR"/>
+        <result column="stu_name" property="stuName" jdbcType="VARCHAR"/>
+        <result column="stu_gender" property="stuGender" jdbcType="VARCHAR"/>
+        <result column="stu_age" property="stuAge" jdbcType="INTEGER"/>
+        <result column="stu_class_num" property="stuClassNum" jdbcType="VARCHAR"/>
+        <result column="stu_password" property="stuPassword" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    stu_seq, stu_code, stu_name, stu_gender, stu_age, stu_class_num, stu_password
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from student
+        where stu_seq = #{stuSeq,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from student
+    where stu_seq = #{stuSeq,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.hallth.domain.Student">
+    insert into student (stu_seq, stu_code, stu_name, 
+      stu_gender, stu_age, stu_class_num, 
+      stu_password)
+    values (#{stuSeq,jdbcType=INTEGER}, #{stuCode,jdbcType=VARCHAR}, #{stuName,jdbcType=VARCHAR}, 
+      #{stuGender,jdbcType=VARCHAR}, #{stuAge,jdbcType=INTEGER}, #{stuClassNum,jdbcType=VARCHAR}, 
+      #{stuPassword,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hallth.domain.Student">
+        insert into student
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="stuSeq != null">
+                stu_seq,
+            </if>
+            <if test="stuCode != null">
+                stu_code,
+            </if>
+            <if test="stuName != null">
+                stu_name,
+            </if>
+            <if test="stuGender != null">
+                stu_gender,
+            </if>
+            <if test="stuAge != null">
+                stu_age,
+            </if>
+            <if test="stuClassNum != null">
+                stu_class_num,
+            </if>
+            <if test="stuPassword != null">
+                stu_password,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="stuSeq != null">
+                #{stuSeq,jdbcType=INTEGER},
+            </if>
+            <if test="stuCode != null">
+                #{stuCode,jdbcType=VARCHAR},
+            </if>
+            <if test="stuName != null">
+                #{stuName,jdbcType=VARCHAR},
+            </if>
+            <if test="stuGender != null">
+                #{stuGender,jdbcType=VARCHAR},
+            </if>
+            <if test="stuAge != null">
+                #{stuAge,jdbcType=INTEGER},
+            </if>
+            <if test="stuClassNum != null">
+                #{stuClassNum,jdbcType=VARCHAR},
+            </if>
+            <if test="stuPassword != null">
+                #{stuPassword,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hallth.domain.Student">
+        update student
+        <set>
+            <if test="stuCode != null">
+                stu_code = #{stuCode,jdbcType=VARCHAR},
+            </if>
+            <if test="stuName != null">
+                stu_name = #{stuName,jdbcType=VARCHAR},
+            </if>
+            <if test="stuGender != null">
+                stu_gender = #{stuGender,jdbcType=VARCHAR},
+            </if>
+            <if test="stuAge != null">
+                stu_age = #{stuAge,jdbcType=INTEGER},
+            </if>
+            <if test="stuClassNum != null">
+                stu_class_num = #{stuClassNum,jdbcType=VARCHAR},
+            </if>
+            <if test="stuPassword != null">
+                stu_password = #{stuPassword,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where stu_seq = #{stuSeq,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hallth.domain.Student">
+    update student
+    set stu_code = #{stuCode,jdbcType=VARCHAR},
+      stu_name = #{stuName,jdbcType=VARCHAR},
+      stu_gender = #{stuGender,jdbcType=VARCHAR},
+      stu_age = #{stuAge,jdbcType=INTEGER},
+      stu_class_num = #{stuClassNum,jdbcType=VARCHAR},
+      stu_password = #{stuPassword,jdbcType=VARCHAR}
+    where stu_seq = #{stuSeq,jdbcType=INTEGER}
+  </update>
+
+    <select id="userLoginCheck" resultMap="BaseResultMap" parameterType="com.hallth.domain.Student">
+        select
+        <include refid="Base_Column_List"/>
+        from student
+        where stu_name = #{stuName,jdbcType=VARCHAR} and stu_password = #{stuPassword,jdbcType=VARCHAR}
+    </select>
+</mapper>

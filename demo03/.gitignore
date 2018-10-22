@@ -1,0 +1,12 @@
+#忽略所有的.class文件，即在git status时不去校验class文件
+*.class
+#忽略所有target目录下的文件
+target
+#忽略日志文件的修改
+log
+logs
+#忽略配置文件
+.gitignore.swp
+.idea/workspace.xml
+#忽略环境自动生成的配置文件
+.idea/*.*

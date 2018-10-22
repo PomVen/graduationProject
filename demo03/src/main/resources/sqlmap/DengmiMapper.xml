@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hallth.mapper.DengmiMapper">
+    <resultMap id="BaseResultMap" type="com.hallth.domain.Dengmi">
+        <id column="xuhao" property="xuhao" jdbcType="INTEGER"/>
+        <result column="mimian" property="mimian" jdbcType="VARCHAR"/>
+        <result column="mimumige" property="mimumige" jdbcType="VARCHAR"/>
+        <result column="mizhu" property="mizhu" jdbcType="VARCHAR"/>
+        <result column="midi" property="midi" jdbcType="VARCHAR"/>
+        <result column="shangxi" property="shangxi" jdbcType="VARCHAR"/>
+        <result column="author" property="author" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    xuhao, mimian, mimumige, mizhu, midi, shangxi, author
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from dengmi
+        where xuhao = #{xuhao,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dengmi
+    where xuhao = #{xuhao,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.hallth.domain.Dengmi">
+    insert into dengmi (xuhao, mimian, mimumige, 
+      mizhu, midi, shangxi, 
+      author)
+    values (#{xuhao,jdbcType=INTEGER}, #{mimian,jdbcType=VARCHAR}, #{mimumige,jdbcType=VARCHAR}, 
+      #{mizhu,jdbcType=VARCHAR}, #{midi,jdbcType=VARCHAR}, #{shangxi,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hallth.domain.Dengmi">
+        insert into dengmi
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="xuhao != null">
+                xuhao,
+            </if>
+            <if test="mimian != null">
+                mimian,
+            </if>
+            <if test="mimumige != null">
+                mimumige,
+            </if>
+            <if test="mizhu != null">
+                mizhu,
+            </if>
+            <if test="midi != null">
+                midi,
+            </if>
+            <if test="shangxi != null">
+                shangxi,
+            </if>
+            <if test="author != null">
+                author,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="xuhao != null">
+                #{xuhao,jdbcType=INTEGER},
+            </if>
+            <if test="mimian != null">
+                #{mimian,jdbcType=VARCHAR},
+            </if>
+            <if test="mimumige != null">
+                #{mimumige,jdbcType=VARCHAR},
+            </if>
+            <if test="mizhu != null">
+                #{mizhu,jdbcType=VARCHAR},
+            </if>
+            <if test="midi != null">
+                #{midi,jdbcType=VARCHAR},
+            </if>
+            <if test="shangxi != null">
+                #{shangxi,jdbcType=VARCHAR},
+            </if>
+            <if test="author != null">
+                #{author,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hallth.domain.Dengmi">
+        update dengmi
+        <set>
+            <if test="mimian != null">
+                mimian = #{mimian,jdbcType=VARCHAR},
+            </if>
+            <if test="mimumige != null">
+                mimumige = #{mimumige,jdbcType=VARCHAR},
+            </if>
+            <if test="mizhu != null">
+                mizhu = #{mizhu,jdbcType=VARCHAR},
+            </if>
+            <if test="midi != null">
+                midi = #{midi,jdbcType=VARCHAR},
+            </if>
+            <if test="shangxi != null">
+                shangxi = #{shangxi,jdbcType=VARCHAR},
+            </if>
+            <if test="author != null">
+                author = #{author,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where xuhao = #{xuhao,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hallth.domain.Dengmi">
+    update dengmi
+    set mimian = #{mimian,jdbcType=VARCHAR},
+      mimumige = #{mimumige,jdbcType=VARCHAR},
+      mizhu = #{mizhu,jdbcType=VARCHAR},
+      midi = #{midi,jdbcType=VARCHAR},
+      shangxi = #{shangxi,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR}
+    where xuhao = #{xuhao,jdbcType=INTEGER}
+  </update>
+
+    <!-- 分页SQL语句 -->
+    <select id="selectDengmiByPage" resultMap="BaseResultMap" parameterType="com.hallth.domain.Dengmi">
+        select
+        <include refid="Base_Column_List"/>
+        from dengmi
+        <where>
+            1=1
+            <if test="mimian != null">
+                AND mimian like '%${mimian}%'
+            </if>
+            <if test="mimumige != null">
+                AND mimumige like '%${mimumige}%'
+            </if>
+            <if test="midi != null">
+                AND midi like '%${midi}%'
+            </if>
+            <if test="mizhu != null">
+                AND mizhu like '%${mizhu}%'
+            </if>
+            <if test="shangxi != null">
+                AND shangxi like '%${shangxi}%'
+            </if>
+            <if test="author != null">
+                AND author like '%${author}%'
+            </if>
+        </where>
+    </select>
+    <!-- 取得记录的总数 -->
+    <select id="getDengmiCount" resultType="java.lang.Long" parameterType="com.hallth.domain.Dengmi">
+        SELECT COUNT(xuhao) FROM dengmi
+        <where>
+            1=1
+            <if test="mimian != null">
+                AND mimian like '%${mimian}%'
+            </if>
+            <if test="mimumige != null">
+                AND mimumige like '%${mimumige}%'
+            </if>
+            <if test="midi != null">
+                AND midi like '%${midi}%'
+            </if>
+            <if test="mizhu != null">
+                AND mizhu like '%${mizhu}%'
+            </if>
+            <if test="shangxi != null">
+                AND shangxi like '%${shangxi}%'
+            </if>
+            <if test="author != null">
+                AND author like '%${author}%'
+            </if>
+            <if test="start!=null and size!=null">
+                limit #{start},#{size}
+            </if>
+        </where>
+    </select>
+
+    <!-- 根据分页数据start 和size查询数据 -->
+    <select id="findByPage" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dengmi
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
+    <!-- 根据分页数据start 和size查询数据 -->
+    <select id="selectCount" resultType="java.lang.Integer">
+        select
+        count(*)
+        from dengmi
+    </select>
+</mapper>

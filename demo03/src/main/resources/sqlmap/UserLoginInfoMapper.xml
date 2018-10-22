@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hallth.mapper.UserLoginInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hallth.domain.UserLoginInfo" >
+    <id column="login_user_id" property="loginUserId" jdbcType="VARCHAR" />
+    <result column="login_user_name" property="loginUserName" jdbcType="VARCHAR" />
+    <result column="login_user_role" property="loginUserRole" jdbcType="VARCHAR" />
+    <result column="login_user_org" property="loginUserOrg" jdbcType="VARCHAR" />
+    <result column="login_time" property="loginTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    login_user_id, login_user_name, login_user_role, login_user_org, login_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_login_info
+    where login_user_id = #{loginUserId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user_login_info
+    where login_user_id = #{loginUserId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hallth.domain.UserLoginInfo" >
+    insert into user_login_info (login_user_id, login_user_name, login_user_role, 
+      login_user_org, login_time)
+    values (#{loginUserId,jdbcType=VARCHAR}, #{loginUserName,jdbcType=VARCHAR}, #{loginUserRole,jdbcType=VARCHAR}, 
+      #{loginUserOrg,jdbcType=VARCHAR}, #{loginTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hallth.domain.UserLoginInfo" >
+    insert into user_login_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loginUserId != null" >
+        login_user_id,
+      </if>
+      <if test="loginUserName != null" >
+        login_user_name,
+      </if>
+      <if test="loginUserRole != null" >
+        login_user_role,
+      </if>
+      <if test="loginUserOrg != null" >
+        login_user_org,
+      </if>
+      <if test="loginTime != null" >
+        login_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loginUserId != null" >
+        #{loginUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginUserName != null" >
+        #{loginUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginUserRole != null" >
+        #{loginUserRole,jdbcType=VARCHAR},
+      </if>
+      <if test="loginUserOrg != null" >
+        #{loginUserOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hallth.domain.UserLoginInfo" >
+    update user_login_info
+    <set >
+      <if test="loginUserName != null" >
+        login_user_name = #{loginUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginUserRole != null" >
+        login_user_role = #{loginUserRole,jdbcType=VARCHAR},
+      </if>
+      <if test="loginUserOrg != null" >
+        login_user_org = #{loginUserOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        login_time = #{loginTime,jdbcType=DATE},
+      </if>
+    </set>
+    where login_user_id = #{loginUserId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hallth.domain.UserLoginInfo" >
+    update user_login_info
+    set login_user_name = #{loginUserName,jdbcType=VARCHAR},
+      login_user_role = #{loginUserRole,jdbcType=VARCHAR},
+      login_user_org = #{loginUserOrg,jdbcType=VARCHAR},
+      login_time = #{loginTime,jdbcType=DATE}
+    where login_user_id = #{loginUserId,jdbcType=VARCHAR}
+  </update>
+</mapper>
