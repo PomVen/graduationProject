@@ -20,4 +20,11 @@ public class StudentServiceImpl implements StudentService {
         Student result = studentMapper.userLoginCheck(student);
         return  result;
     }
+
+    public int insert(Student record){
+        logger.info("新建用户；param：【"+record.toString()+"】");
+        int result = studentMapper.insert(record);
+        return result;
+    }
+
 }

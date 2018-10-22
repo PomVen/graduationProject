@@ -51,19 +51,23 @@ public class LoginController {
         if(loginUserName.trim().isEmpty()){
             logger.info("用户名为空");
             model.addAttribute("errMsg","用户名不能为空！");
-            return "redirect:login";
+            return "loginPage";
         }
         if(loginPassword.trim().isEmpty()){
             logger.info("密码为空");
             model.addAttribute("errMsg","密码不能为空！");
-            return "redirect:login";
+            return "loginPage";
         }
+
+
         /**
          * 测试用逻辑
          * */
         if(!loginPassword.trim().isEmpty() && !loginUserName.trim().isEmpty()){
             return "success";
         }
+
+
         Student student = new Student();
         student.setStuName(loginUserName);
         student.setStuPassword(loginPassword);
@@ -71,7 +75,7 @@ public class LoginController {
         if(student == null){
             logger.info("用户不存在或密码错误！");
             model.addAttribute("errMsg","用户不存在或密码错误！");
-            return "redirect:login";
+            return "loginPage";
         }
         UserLoginInfo userLoginInfo = new UserLoginInfo();
         userLoginInfo.setLoginUserName(loginUserName);
@@ -97,7 +101,22 @@ public class LoginController {
             model.addAttribute("errMsg","密码不能为空！");
             return "regit";
         }
-
-        return "starLogin";
+        Student student = new Student();
+        student.setStuName(regitUserName);
+        student = studentService.userCheck(student);
+        if(student != null){
+            model.addAttribute("errMsg","用户已存在");
+            return "regit";
+        }
+        student = null;
+        student.setStuName(regitUserName);
+        student.setStuPassword(regitPassword);
+        int result = studentService.insert(student);
+        if(result == 1){
+            return "starLogin";
+        } else {
+            model.addAttribute("errMsg","注册用户失败，请稍后再试。");
+            return "regit";
+        }
     }
 }

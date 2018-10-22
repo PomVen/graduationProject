@@ -6,4 +6,6 @@ public interface StudentService {
 
     Student userCheck(Student student);
 
+    int insert(Student record);
+
 }

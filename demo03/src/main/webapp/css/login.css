@@ -85,3 +85,9 @@
 	left: 115px;
 	height: 38px;
 }
+.errMsg{
+	color: #DE1212;
+	margin-top: 5%;
+	font-weight: bold;
+	background-color: rgba(0,0,0,.3);
+}
