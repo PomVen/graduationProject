@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>毕业设计选课系统 - 重置密码</title>
+    <title>毕业设计选课系统 - 登录</title>
     <link rel="stylesheet" href="/lib/layui/css/layui.css" media="all" />
     <link rel="stylesheet" href="/css/login.css" />
     <link rel="stylesheet" href="/css/login-top.css" />
@@ -28,7 +28,7 @@
             filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#2d9b95',endColorstr='#0e1329',GradientType=1 );
         }
         .box {background:#000000; position:absolute;margin-left:-14%; z-index:3;opacity: 0.6;left:70%;}
-        .box-reset{width:450px; height:385px;margin-top:-8%;top:46%;}
+        .box-login{width:450px; height:295px;margin-top:-10%;top:50%;}
     </style>
 </head>
 <body>
@@ -41,50 +41,55 @@
     <div class="font t_d">选</div>
     <div class="font t_t">题</div>
 </div>
-<div class="beg-login-box box box-reset layui-anim-rotate" id="reset">
+<div class="beg-login-box box box-login layui-anim-up" id="login">
     <header>
-        <h1 style="color:#FFFFFF">重置密码</h1>
+        <h1 style="color:#FFFFFF">欢迎登录</h1>
     </header>
     <div class="beg-login-main">
-        <form action="" class="layui-form" method="post"><input name="__RequestVerificationToken" type="hidden" value="fkfh8D89BFqTdrE2iiSdG_L781RSRtdWOH411poVUWhxzA5MzI8es07g6KPYQh9Log-xf84pIR2RIAEkOokZL3Ee3UKmX0Jc8bW8jOdhqo81" />
+        <form action="/login/userCheck" class="layui-form" method="post" onsubmit="return login()">
+            <input name="__RequestVerificationToken" type="hidden" value="fkfh8D89BFqTdrE2iiSdG_L781RSRtdWOH411poVUWhxzA5MzI8es07g6KPYQh9Log-xf84pIR2RIAEkOokZL3Ee3UKmX0Jc8bW8jOdhqo81" />
             <div class="layui-form-item">
                 <label class="beg-login-icon">
                     <i class="layui-icon">&#xe612;</i>
                 </label>
-                <input id="username_reset" type="text" name="userName" lay-verify="userName" autocomplete="off" placeholder="请输入用户名" class="layui-input" value="${loginUserName}">
-            </div>
-            <div class="layui-form-item">
-                <label class="beg-login-icon">
-                    <i class="layui-icon">&#xe6b2;</i>
-                </label>
-                <input id="regcode_reset" type="text" name="regcode" lay-verify="regcode" autocomplete="off" placeholder="请输入注册码" class="layui-input">
+                <input id="loginUserName" type="text" name="loginUserName" lay-verify="loginUserName" autocomplete="off" placeholder="请输入登录名" class="layui-input">
             </div>
             <div class="layui-form-item">
                 <label class="beg-login-icon">
                     <i class="layui-icon">&#xe642;</i>
                 </label>
-                <input id="password_reset" type="password" name="password" lay-verify="password" autocomplete="off" placeholder="请输入重置密码" class="layui-input">
+                <input id="loginPassword" type="password" name="loginPassword" lay-verify="loginPassword" autocomplete="off" placeholder="请输入密码" class="layui-input">
             </div>
             <div class="layui-form-item">
-                <label class="beg-login-icon">
-                    <i class="layui-icon">&#xe642;</i>
-                </label>
-                <input id="determine_password_reset" type="password" name="password" lay-verify="password" autocomplete="off" placeholder="确认密码" class="layui-input">
+
+                <div class="beg-pull-left beg-login-remember" style="color:#FFFFFF;margin-top: 1%;">
+                    <label>记住帐号？</label>
+                    <input type="checkbox" name="close" lay-skin="switch" lay-text="ON|OFF" checked>
+                </div>
+
+                <div class="beg-pull-right" style="margin-top: 4%;">
+                    <a class="btn pull-left btn-link text-muted" href="/login/foundPassword" style="color:#FFFFFF;cursor:pointer;">忘记密码?</a>
+                </div>
+                <div class="beg-clear"></div>
             </div>
+
             <div class="layui-form-item">
-                <div class="beg-pull-left beg-login-remember" style="color:#FFFFFF;margin-top: 6%;">
-                    <button class="layui-btn" onclick="reset_pwd();return false;">
-                        <i class="layui-icon">&#xe650;</i> 重置
-                    </button>
+                <div class="beg-pull-left beg-login-remember" style="color:#FFFFFF;margin-top: -2%;">
+                    <a class="layui-btn layui-btn-radius layui-btn-primary"  href="/login/regit">
+                        <i class="layui-icon">&#xe650;</i> 注册
+                    </a>
                 </div>
 
                 <div class="beg-pull-right">
-                    <a class="layui-btn layui-btn layui-btn-primary" style="margin-top: 18%;" href="/login/login">
-                        <i class="layui-icon">&#xe650;</i> 返回登录
-                    </a>
+                    <button class="layui-btn layui-btn-radius" style="margin-top: 4%;" onclick="login()">
+                        <i class="layui-icon">&#xe650;</i> 登录
+                    </button>
                 </div>
             </div>
         </form>
+    </div>
+    <div class="layui-form-item errMsg">
+        ${errMsg}
     </div>
 </div>
 <script type="text/javascript">
@@ -307,6 +312,11 @@
             });
             return false;
         }
+    }
+
+    function foundPassword(){
+        console.log("loginUserName=" + $("#loginUserName").val());
+        return window.open("/login/foundPassword?loginUserName=" + $("#loginUserName").val());
     }
 
     function goto_register(){

@@ -32,15 +32,9 @@ public class LoginController {
 
 
     @RequestMapping("/foundPassword")
-    public String foundPassword(@RequestParam("loginUserName") String loginUserName, HttpServletRequest request, HttpServletResponse response, Model model){
-        logger.info("进入foundPassword，param：【loginUserName=" + loginUserName + "】");
-        if(loginUserName.trim().isEmpty()){
-            loginUserName = "";
-        }
-        model.addAttribute("loginUserName",loginUserName);
+    public String foundPassword(){
         return "foundPassword";
     }
-
 
     /**
      * 登录的用户名密码校验
