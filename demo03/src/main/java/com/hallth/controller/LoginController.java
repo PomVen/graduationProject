@@ -36,6 +36,11 @@ public class LoginController {
         return "foundPassword";
     }
 
+    @RequestMapping("/home")
+    public String home(){
+        return "index";
+    }
+
     /**
      * 登录的用户名密码校验
      * */
@@ -58,7 +63,7 @@ public class LoginController {
          * 测试用逻辑
          * */
         if(!loginPassword.trim().isEmpty() && !loginUserName.trim().isEmpty()){
-            return "success";
+            return "func";
         }
 
 
@@ -74,7 +79,7 @@ public class LoginController {
         UserLoginInfo userLoginInfo = new UserLoginInfo();
         userLoginInfo.setLoginUserName(loginUserName);
         request.getSession().setAttribute("loginUserInfo",userLoginInfo);
-        return "success";
+        return "func";
     }
 
     @RequestMapping("/userRegit")
