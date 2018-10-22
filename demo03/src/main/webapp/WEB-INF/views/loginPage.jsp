@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="beg-pull-right" style="margin-top: 4%;">
-                    <a class="btn pull-left btn-link text-muted" href="/login/foundPassword" style="color:#FFFFFF;cursor:pointer;">忘记密码?</a>
+                    <a class="btn pull-left btn-link text-muted" href="javascript:foundPassword();" style="color:#FFFFFF;cursor:pointer;">忘记ss密码?</a>
                 </div>
                 <div class="beg-clear"></div>
             </div>
@@ -316,6 +316,11 @@
             });
             return false;
         }
+    }
+
+    function foundPassword(){
+        console.log("loginUserName=" + $("#loginUserName").val());
+        return window.open("/login/foundPassword?loginUserName=" + $("#loginUserName").val());
     }
 
     function goto_register(){

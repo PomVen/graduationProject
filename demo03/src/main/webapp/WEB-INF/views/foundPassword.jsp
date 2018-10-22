@@ -28,11 +28,7 @@
             filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#2d9b95',endColorstr='#0e1329',GradientType=1 );
         }
         .box {background:#000000; position:absolute;margin-left:-14%; z-index:3;opacity: 0.6;left:70%;}
-        .box-login{width:450px; height:295px;margin-top:-10%;top:50%;}
-        .box-register{width:450px; height:385px;margin-top:-8%;top:46%;}
         .box-reset{width:450px; height:385px;margin-top:-8%;top:46%;}
-        #register {display:none;}
-        #reset{display:none;}
     </style>
 </head>
 <body>
@@ -55,7 +51,7 @@
                 <label class="beg-login-icon">
                     <i class="layui-icon">&#xe612;</i>
                 </label>
-                <input id="username_reset" type="text" name="userName" lay-verify="userName" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+                <input id="username_reset" type="text" name="userName" lay-verify="userName" autocomplete="off" placeholder="请输入用户名" class="layui-input" value="${loginUserName}">
             </div>
             <div class="layui-form-item">
                 <label class="beg-login-icon">
@@ -83,9 +79,9 @@
                 </div>
 
                 <div class="beg-pull-right">
-                    <button class="layui-btn layui-btn layui-btn-primary" style="margin-top: 18%;" onClick="goto_login();return false;">
+                    <a class="layui-btn layui-btn layui-btn-primary" style="margin-top: 18%;" href="/login/login">
                         <i class="layui-icon">&#xe650;</i> 返回登录
-                    </button>
+                    </a>
                 </div>
             </div>
         </form>

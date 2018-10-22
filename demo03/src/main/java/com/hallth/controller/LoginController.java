@@ -32,7 +32,7 @@ public class LoginController {
 
 
     @RequestMapping("/foundPassword")
-    private String foundPassword(@RequestParam("loginUserName") String loginUserName, HttpServletRequest request, HttpServletResponse response, Model model){
+    public String foundPassword(@RequestParam("loginUserName") String loginUserName, HttpServletRequest request, HttpServletResponse response, Model model){
         logger.info("进入foundPassword，param：【loginUserName=" + loginUserName + "】");
         if(loginUserName.trim().isEmpty()){
             loginUserName = "";
@@ -113,7 +113,7 @@ public class LoginController {
         student.setStuPassword(regitPassword);
         int result = studentService.insert(student);
         if(result == 1){
-            return "starLogin";
+            return "success";
         } else {
             model.addAttribute("errMsg","注册用户失败，请稍后再试。");
             return "regit";

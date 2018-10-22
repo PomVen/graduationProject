@@ -2,6 +2,9 @@ package com.hallth.domain;
 
 import java.util.Date;
 
+/**
+ * 用户的登陆信息
+ * */
 public class UserLoginInfo {
     private String loginUserId;
 
