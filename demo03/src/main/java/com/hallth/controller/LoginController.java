@@ -23,7 +23,6 @@ public class LoginController {
 
     @RequestMapping("/login")
     public String loginPage(){
-//        return "newLogin";
         return "loginPage";
     }
     @RequestMapping("/regit")
@@ -52,18 +51,18 @@ public class LoginController {
         if(loginUserName.trim().isEmpty()){
             logger.info("用户名为空");
             model.addAttribute("errMsg","用户名不能为空！");
-            return "redirect:starLogin";
+            return "redirect:login";
         }
         if(loginPassword.trim().isEmpty()){
             logger.info("密码为空");
             model.addAttribute("errMsg","密码不能为空！");
-            return "redirect:starLogin";
+            return "redirect:login";
         }
         /**
          * 测试用逻辑
          * */
         if(!loginPassword.trim().isEmpty() && !loginUserName.trim().isEmpty()){
-            return "func";
+            return "success";
         }
         Student student = new Student();
         student.setStuName(loginUserName);
@@ -72,12 +71,12 @@ public class LoginController {
         if(student == null){
             logger.info("用户不存在或密码错误！");
             model.addAttribute("errMsg","用户不存在或密码错误！");
-            return "redirect:starLogin";
+            return "redirect:login";
         }
         UserLoginInfo userLoginInfo = new UserLoginInfo();
         userLoginInfo.setLoginUserName(loginUserName);
         request.getSession().setAttribute("loginUserInfo",userLoginInfo);
-        return "func";
+        return "success";
     }
 
     @RequestMapping("/userRegit")

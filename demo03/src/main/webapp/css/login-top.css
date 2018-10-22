@@ -1,0 +1,239 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+	.main{
+		width: 100%;
+		height: 700px;
+		background: url(../images/loginbg.jpg) no-repeat;
+		background-size: 100%;
+	}
+		.font{
+			position: absolute;
+			font-size: 100px;
+			color: #EDF1F5;
+			background: rgba(242,242,242,0.6);
+		}
+		.font:hover{
+			cursor: pointer;
+		}
+			.t_c{
+				left: 150px;
+				top: 150px;
+				transition:2s;
+			}
+			.t_c:hover{
+				transform:rotateX(200deg) rotateZ(160deg) rotateX(60deg) translateY(50px);
+			}
+			.t_r{
+				left: 210px;
+				top: 190px;
+				transition:2s;
+			}
+			.t_r:hover{
+				transform: rotateX(-200deg) rotateZ(60deg) rotateX(160deg) translateY(-50px);
+			}
+			.t_e{
+				left: 280px;
+				top: 270px;
+				transition:2s;
+			}
+			.t_e:hover{
+				transform: rotateX(100deg) rotateZ(260deg) rotateX(-160deg) translateZ(50px);
+			}
+			
+			.t_a{
+				left: 360px;
+				top: 180px;
+				transition:2s;
+			}
+			.t_a:hover{
+				transform: rotateX(300deg) rotateZ(60deg) rotateX(260deg) translateZ(-50px);
+			}
+			.t_d{
+				left: 430px;
+				top: 240px;
+				transition:2s;
+			}
+			.t_d:hover{
+				transform: rotateX(170deg) rotateZ(-60deg) rotateX(-60deg) translateZ(-50px) translateY(-50px);
+			}
+			.t_m{
+				left: 480px;
+				top: 200px;
+				transition:2s;
+			}
+			.t_m:hover{
+				transform: rotateX(-100deg) rotateZ(160deg) rotateX(60deg) translateX(-50px);
+			}
+			.t_t{
+				left: 550px;
+				top: 210px;
+				transition:2s;
+			}
+			.t_t:hover{
+				transform: rotateX(-90deg) rotateZ(60deg) rotateX(30deg) translateY(-50px);
+			}
+		.middle{
+			position: relative;
+			top: 110px;
+			left: 920px;
+			width: 300px;
+			height: 400px;
+			background: rgba(242,242,242,0.6);
+			display: none;
+		}
+			.m2{
+				display: none;
+			}
+			.nav{
+				width: 100%;
+				height: 40px;
+				background: rgba(51,55,59,0.8);
+			}
+				.nav_left{
+					float: left;
+					margin-left: 50px;
+					text-align: center;
+					width: 200px;
+					line-height: 40px;
+					font-size: 26px;
+					font-weight: bold;
+					transition: 2s;
+				}
+				.nav_left a{
+					text-decoration: none;
+					color: white;
+				}
+				.nav_left:hover{
+					cursor: pointer;
+					transform: translateX(50px);
+				}
+				.nav_right{
+					font-size: 15px;
+					text-align: center;
+					margin-left: 650px;
+					width: 600px;
+					height: 50px;
+				}
+			.nav_right ul li{
+				color:gray;
+				line-height:40px;
+				width:80px;
+				float:left;
+				list-style:none;
+			}
+			.nav_right ul li a{
+				color:gray;
+				text-decoration:none;
+			}
+			.nav_right ul li a:hover{
+				color:white;
+				cursor:pointer;
+			}
+			.title{
+				width: 100%;
+				height: 50px;
+				text-align: center;
+				line-height: 50px;
+				font-size: 24px;
+				color: #EDF1F5;
+				border-bottom: 1px solid #EDF1F5;
+			}
+			.user_message{
+				margin: 20px 0px 0px 10px;
+				text-indent: 60px;
+				font-size: 20px;
+				width: 280px;
+				height: 50px;
+				background: rgba(242,242,242,0.6);
+			}
+			.label{
+				position: absolute;
+				left: 130px;
+				color: rgba(152,163,178,0.5);
+			}
+			.l1,.l4{
+				top: 90px;
+			}
+			.l2,.l5{
+				top: 165px;
+			}
+			.l3{
+				top: 240px;
+			}
+			.l4,.l5{
+				display: none;
+			}
+				.icon{
+					position: absolute;
+					left: 15px;
+					width: 50px;
+					height: 50px;
+					opacity: 0.5;
+					border-radius: 50%;
+				}
+				.user_icon{
+					top: 75px;
+					background: url(../images/usericon.png) no-repeat;
+					background-size: 100%;
+				}
+				.pass_icon{
+					top: 150px;
+					background: url(../images/passicon.png) no-repeat;
+					background-size: 100%;
+				}
+				.pass_icon2{
+					top: 222px;
+					background: url(../images/passicon.png) no-repeat;
+					background-size: 100%;
+				}
+			.m_font{
+				color: gray;
+				margin-top:10px;
+				text-indent: 20px; 
+				height: 20px;
+				float: left;
+			}
+			.f1{
+				width: 100px;
+			}
+			.f2{
+				text-align: right;
+				width: 190px;
+			}
+			.m_font:hover{
+				cursor: pointer;
+				text-decoration: underline;
+			}
+			.order{
+				text-align: center;
+				line-height: 40px;
+				color: gray;
+				position: relative;
+				font-size: 20px;
+				width: 150px;
+				height: 40px;
+				background: rgba(242,242,242,0.6);
+			}
+			.order:hover{
+				font-size: 22px;
+				font-weight: bold;
+				cursor: pointer;
+			}
+			.submit{
+				top: 15px;
+				left: 80px;
+			}
+			.zhuce{
+				top: 35px;
+				left: 80px;
+			}
+	 	.footer{
+	 		line-height: 30px;
+	 		text-align: center;
+	 		margin-top: 180px;
+	 		width: 100%;
+	 		height: 100px;
+	 		color: gray;
+	 	}

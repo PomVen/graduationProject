@@ -18,7 +18,6 @@
     <!--如果webapp下你新建了文件夹，想访问里面的静态资源，那么就要在这配置一下-->
     <mvc:resources location="/images/" mapping="/images/**"/>
     <mvc:resources location="/css/" mapping="/css/**"/>
-    <mvc:resources location="/styles/" mapping="/styles/**"/>
     <mvc:resources location="/js/" mapping="/js/**"/>
     <mvc:default-servlet-handler/>
 
