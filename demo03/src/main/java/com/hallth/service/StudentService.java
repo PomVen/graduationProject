@@ -8,4 +8,6 @@ public interface StudentService {
 
     int insert(Student record);
 
+    int updateStudent(Student student);
+
 }

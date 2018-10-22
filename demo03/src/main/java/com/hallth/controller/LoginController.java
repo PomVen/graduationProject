@@ -95,6 +95,11 @@ public class LoginController {
             model.addAttribute("errMsg","密码不能为空！");
             return "regit";
         }
+        if(!regitPasswordCheck.trim().equals(regitPassword.trim())){
+            logger.info("两次密码输入不一致，请重新输入");
+            model.addAttribute("errMsg","两次密码输入不一致，请重新输入！");
+            return "regit";
+        }
         Student student = new Student();
         student.setStuName(regitUserName);
         student = studentService.userCheck(student);
@@ -111,6 +116,48 @@ public class LoginController {
         } else {
             model.addAttribute("errMsg","注册用户失败，请稍后再试。");
             return "regit";
+        }
+    }
+
+    @RequestMapping("/resetPassword")
+    public String resetPassword(@RequestParam("resetUserName")String resetUserName, @RequestParam("resetPassword")String resetPassword,
+                                @RequestParam("resetPasswordCheck")String resetPasswordCheck, @RequestParam("regcode")String regcode,
+                                HttpServletRequest request, HttpServletResponse response, Model model){
+        logger.info("开始重置用户的密码；param:[resetUserName="+ resetUserName +", resetPassword="+ resetPassword + "]");
+        if(resetUserName.trim().isEmpty()){
+            logger.error("重置密码时用户名为空");
+            model.addAttribute("errMsg","用户名不能为空");
+            return "foundPassword";
+        }
+        if(resetPassword.trim().isEmpty()){
+            logger.error("重置密码时新密码为空");
+            model.addAttribute("errMsg","新密码不能为空");
+            return "foundPassword";
+        }
+        if(resetPasswordCheck.trim().isEmpty()){
+            logger.error("重置密码时新密码为空");
+            model.addAttribute("errMsg","新密码不能为空");
+            return "foundPassword";
+        }
+        if(resetPasswordCheck.trim().equals(resetPassword.trim())){
+            logger.error("两次密码输入不一致");
+            model.addAttribute("errMsg","两次密码输入不一致，请重新输入");
+            return "foundPassword";
+        }
+        Student student = new Student();
+        student.setStuName(resetUserName);
+        student = studentService.userCheck(student);
+        if(student == null){
+            model.addAttribute("errMsg","该用户不存在");
+            return "foundPassword";
+        }
+        student.setStuPassword(resetPassword);
+        int result = studentService.updateStudent(student);
+        if(result == 1){
+            return "loginPage";
+        } else {
+            model.addAttribute("errMsg","重置密码时发生异常，请重试");
+            return "foundPassword";
         }
     }
 }

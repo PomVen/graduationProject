@@ -52,13 +52,13 @@
                 <label class="beg-login-icon">
                     <i class="layui-icon">&#xe612;</i>
                 </label>
-                <input id="loginUserName" type="text" name="loginUserName" lay-verify="loginUserName" autocomplete="off" placeholder="请输入登录名" class="layui-input">
+                <input id="loginUserName" type="text" name="loginUserName" lay-verify="loginUserName" autocomplete="off" placeholder="请输入登录名" class="layui-input" required>
             </div>
             <div class="layui-form-item">
                 <label class="beg-login-icon">
                     <i class="layui-icon">&#xe642;</i>
                 </label>
-                <input id="loginPassword" type="password" name="loginPassword" lay-verify="loginPassword" autocomplete="off" placeholder="请输入密码" class="layui-input">
+                <input id="loginPassword" type="password" name="loginPassword" lay-verify="loginPassword" autocomplete="off" placeholder="请输入密码" class="layui-input" required>
             </div>
             <div class="layui-form-item">
 
@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="beg-pull-right" style="margin-top: 4%;">
-                    <a class="btn pull-left btn-link text-muted" href="javascript:foundPassword();" style="color:#FFFFFF;cursor:pointer;">忘记密码?</a>
+                    <a class="btn pull-left btn-link text-muted" href="/login/foundPassword" style="color:#FFFFFF;cursor:pointer;">忘记密码?</a>
                 </div>
                 <div class="beg-clear"></div>
             </div>
@@ -312,11 +312,6 @@
             });
             return false;
         }
-    }
-
-    function foundPassword(){
-        console.log("loginUserName=" + $("#loginUserName").val());
-        return window.open("/login/foundPassword?loginUserName=" + $("#loginUserName").val());
     }
 
     function goto_register(){

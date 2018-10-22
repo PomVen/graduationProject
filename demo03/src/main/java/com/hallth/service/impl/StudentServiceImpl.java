@@ -27,4 +27,10 @@ public class StudentServiceImpl implements StudentService {
         return result;
     }
 
+    public int updateStudent(Student student){
+        logger.info("更新用户信息；param:["+ student.toString() +"]");
+        int result = studentMapper.updateByPrimaryKeySelective(student);
+        return result;
+    }
+
 }
