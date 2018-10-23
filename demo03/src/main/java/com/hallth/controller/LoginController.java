@@ -1,11 +1,9 @@
 package com.hallth.controller;
 
-import com.hallth.domain.GraduationTheme;
-import com.hallth.domain.Student;
-import com.hallth.domain.Teacher;
-import com.hallth.domain.UserLoginInfo;
+import com.hallth.domain.*;
 import com.hallth.service.impl.GraduationThemeServiceImpl;
 import com.hallth.service.impl.StudentServiceImpl;
+import com.hallth.service.impl.TeacherServiceImpl;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +14,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.RequestWrapper;
 
 @Controller
 @RequestMapping("/login")
@@ -26,6 +23,8 @@ public class LoginController {
     private StudentServiceImpl studentService;
     @Resource
     private GraduationThemeServiceImpl graduationThemeService;
+    @Resource
+    private TeacherServiceImpl teacherService;
     @RequestMapping("/login")
     public String loginPage(){
         return "loginPage";
@@ -75,12 +74,22 @@ public class LoginController {
     }
 
     @RequestMapping("/themeChose")
-    public String themeChose(){
+    public String themeChose(HttpServletRequest request, HttpServletResponse response, Model model){
+        HttpSession session = request.getSession();
+        UserLoginInfo userLoginInfo = (UserLoginInfo)session.getAttribute("loginUserInfo");
+        PageBean<GraduationTheme> pageBean = new PageBean<>();
+        pageBean.setLists(null);
+        pageBean.setTotalCount(0);
+        pageBean.setPageSize(10);
+        pageBean.setTotalPage(0);
+        pageBean.setCurrPage(1);
+        model.addAttribute("pagemsg", pageBean);
+        model.addAttribute("count", 0);
         return "themeChose";
     }
 
     @RequestMapping("/themeDescription")
-    public String themeDescription(){
+    public String themeDescription(HttpServletRequest request, HttpServletResponse response, Model model){
         return "themeDescription";
     }
 
@@ -217,7 +226,7 @@ public class LoginController {
         if(result == 1){
             return "loginPage";
         } else {
-            model.addAttribute("errMsg","重置密码时发生异常，请重试"); 
+            model.addAttribute("errMsg","重置密码时发生异常，请重试");
             return "foundPassword";
         }
     }
