@@ -13,9 +13,9 @@
 </head>
 <body>
 <c:if test="${!empty theme}">
-    课题名称：${theme.getteacherName()}<br/>
-    课题描述：${theme.getteacherAge()}<br/>
-    课题导师：${theme.getteacherGender()}<br/>
+    课题名称：${theme.getthemeTitle()}<br/>
+    课题描述：${theme.getthemeIntroduction()}<br/>
+    课题导师：${theme.getTeacherName()}<br/>
 </c:if>
 <c:if test="${empty theme}">
     您尚未选择课题，无法查看课题信息。

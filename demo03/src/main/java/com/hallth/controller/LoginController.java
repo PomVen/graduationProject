@@ -90,6 +90,22 @@ public class LoginController {
 
     @RequestMapping("/themeDescription")
     public String themeDescription(HttpServletRequest request, HttpServletResponse response, Model model){
+        HttpSession session = request.getSession();
+        UserLoginInfo userLoginInfo = (UserLoginInfo)session.getAttribute("loginUserInfo");
+        String userName = userLoginInfo.getLoginUserName();
+        Student student = new Student();
+        student.setStuName(userName);
+        student = studentService.quetyByUserName(student);
+        String theme = student.getTheme();
+        if(null == theme || "".equals(theme)){
+            model.addAttribute("theme",null);
+        } else {
+            GraduationTheme graduationTheme = new GraduationTheme();
+            graduationTheme.setthemeTitle(theme);
+            graduationTheme = graduationThemeService.queryThemeByTitle(graduationTheme);
+            graduationTheme.setTeacherName(teacherService.selectBySeq(graduationTheme.getthemeTeacher()).getteacherName());
+            model.addAttribute("theme",graduationTheme);
+        }
         return "themeDescription";
     }
 
