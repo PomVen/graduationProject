@@ -9,7 +9,6 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>毕业设计选课系统 - 注册</title>
     <link rel="stylesheet" href="/lib/layui/css/layui.css" media="all" />
     <link rel="stylesheet" href="/css/login.css" />
