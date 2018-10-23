@@ -52,7 +52,6 @@ To change this template use File | Settings | File Templates.
                 <td style="width: 10%">导师联系方式</td>
                 <td style="width: 20%">已选人数</td>
                 <td style="width: 20%">操作</td>
-
             </tr>
             </thead>
             <c:forEach items="${requestScope.pagemsg.lists}" var="u">
@@ -71,7 +70,6 @@ To change this template use File | Settings | File Templates.
                 <span style="font-size: medium;">当前没有复核条件的查询结果</span>
         </c:if>
     </div>
-<%--</c:if>--%>
     <table border="0" cellspacing="0" cellpadding="0" width="900px">
         <tr>
             <td class="td2">

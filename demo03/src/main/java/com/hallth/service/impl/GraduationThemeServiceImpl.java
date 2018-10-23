@@ -6,11 +6,13 @@ import com.hallth.domain.Teacher;
 import com.hallth.mapper.GraduationThemeMapper;
 import com.hallth.mapper.TeacherMapper;
 import com.hallth.service.GraduationThemeService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class GraduationThemeServiceImpl implements GraduationThemeService {
 
     @Resource
@@ -41,11 +43,22 @@ public class GraduationThemeServiceImpl implements GraduationThemeService {
     }
 
     public Teacher getTeacherByTheme(GraduationTheme theme){
-        theme = graduationThemeMapper.queryBySeq(theme);
+//        theme = graduationThemeMapper.queryBySeq(theme);
+        //测试数据
+        theme.setthemeTeacher(1);
         int teacherSeq = theme.getthemeTeacher();
         Teacher teacher = new Teacher();
         teacher.setteacherSeq(teacherSeq);
-        teacher = teacherMapper.selectBySeq(teacher);
+//        teacher = teacherMapper.selectBySeq(teacher);
+        //测试数据
+        teacher.setteacherMajor("灯谜");
+        teacher.setteacherId("huoyangshuai");
+        teacher.setteacherGender("男");
+        teacher.setteacherEmail("123@123.com");
+        teacher.setteacherAddress("山西");
+        teacher.setteacherPhone("123465");
+        teacher.setteacherAge(35);
+        teacher.setteacherName("霍仰帅");
         return teacher;
     }
 }

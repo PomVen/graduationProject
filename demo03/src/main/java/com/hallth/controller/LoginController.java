@@ -1,7 +1,10 @@
 package com.hallth.controller;
 
+import com.hallth.domain.GraduationTheme;
 import com.hallth.domain.Student;
+import com.hallth.domain.Teacher;
 import com.hallth.domain.UserLoginInfo;
+import com.hallth.service.impl.GraduationThemeServiceImpl;
 import com.hallth.service.impl.StudentServiceImpl;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -21,7 +24,8 @@ public class LoginController {
     private static Logger logger = Logger.getLogger(LoginController.class.getName());
     @Resource
     private StudentServiceImpl studentService;
-
+    @Resource
+    private GraduationThemeServiceImpl graduationThemeService;
     @RequestMapping("/login")
     public String loginPage(){
         return "loginPage";
@@ -50,7 +54,23 @@ public class LoginController {
     }
 
     @RequestMapping("/teacherIntroduce")
-    public String teacherIntroduce(){
+    public String teacherIntroduce(HttpServletRequest request, HttpServletResponse response, Model model){
+        HttpSession session = request.getSession();
+        UserLoginInfo userLoginInfo = (UserLoginInfo)session.getAttribute("loginUserInfo");
+        String userName = userLoginInfo.getLoginUserName();
+        Student student = new Student();
+        student.setStuName(userName);
+        student = studentService.quetyByUserName(student);
+        String theme = student.getTheme();
+        Teacher teacher = null;
+        if(theme == null || theme.isEmpty()){
+            model.addAttribute("teacherInfo",teacher);
+        } else {
+            GraduationTheme graduationTheme = new GraduationTheme();
+            graduationTheme.setthemeTitle(theme);
+            teacher = graduationThemeService.getTeacherByTheme(graduationTheme);
+            model.addAttribute("teacherInfo",teacher);
+        }
         return "teacherIntroduce";
     }
 

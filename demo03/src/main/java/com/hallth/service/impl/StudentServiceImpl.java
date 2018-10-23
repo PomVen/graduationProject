@@ -35,7 +35,9 @@ public class StudentServiceImpl implements StudentService {
 
     public Student quetyByUserName(Student student){
         logger.info("查询当前登录的学生信息;param="+student.toString());
-        student = studentMapper.selectByStudentName(student);
+//        student = studentMapper.selectByStudentName(student);
+        //测试数据
+        student.setTheme("毕业设计选择课题系统");
         return student;
     }
 
