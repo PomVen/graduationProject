@@ -28,4 +28,19 @@ public class TeacherServiceImpl implements TeacherService {
         return queryParam;//teacherMapper.selectByName(queryParam);
     }
 
+    @Override
+    public Teacher selectBySeq(int teacherSeq){
+        Teacher queryParam = new Teacher();
+        queryParam.setteacherName("霍仰帅");
+        queryParam.setteacherPhone("18734914196");
+        queryParam.setteacherAddress("山西");
+        queryParam.setteacherAge(45);
+        queryParam.setteacherEmail("123@5.com");
+        queryParam.setteacherGender("男");
+        queryParam.setteacherId("huoyangshuai");
+        queryParam.setteacherMajor("灯谜");
+        queryParam.setteacherSeq(teacherSeq);
+        return queryParam;//teacherMapper.selectBySeq(queryParam);
+    }
+
 }
