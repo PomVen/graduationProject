@@ -197,7 +197,7 @@ public class LoginController {
         if(result == 1){
             return "loginPage";
         } else {
-            model.addAttribute("errMsg","重置密码时发生异常，请重试");
+            model.addAttribute("errMsg","重置密码时发生异常，请重试"); 
             return "foundPassword";
         }
     }

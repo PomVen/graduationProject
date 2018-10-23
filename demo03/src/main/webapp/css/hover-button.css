@@ -1,0 +1,14 @@
+#back-to-top{
+    position:fixed;
+    display:none;
+    bottom:100px;
+    right:80px;
+    border: 1px red solid;
+}
+#back-to-home{
+    position:fixed;
+    display:block;
+    bottom:70px;
+    right:80px;
+    border: 1px red solid;
+}

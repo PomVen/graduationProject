@@ -6,7 +6,7 @@ public class Teacher {
     private int teacherSeq;
     private String teacherName;
     private String teacherId;
-    private String teacherAge;
+    private int teacherAge;
     private String teacherGender;
     private String teacherPhone;
     private String teacherMajor;
@@ -37,11 +37,11 @@ public class Teacher {
         this.teacherId = teacherId;
     }
 
-    public String getteacherAge() {
+    public int getteacherAge() {
         return teacherAge;
     }
 
-    public void setteacherAge(String teacherAge) {
+    public void setteacherAge(int teacherAge) {
         this.teacherAge = teacherAge;
     }
 

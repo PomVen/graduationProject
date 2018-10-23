@@ -3,16 +3,16 @@ package com.hallth.domain;
 import java.util.Objects;
 
 public class GraduationTheme {
-    private String themeSeq;
+    private int themeSeq;
     private String themeTitle;
     private String themeIntroduction;
-    private String themeTeacher;
+    private int themeTeacher;
 
-    public String getthemeSeq() {
+    public int getthemeSeq() {
         return themeSeq;
     }
 
-    public void setthemeSeq(String themeSeq) {
+    public void setthemeSeq(int themeSeq) {
         this.themeSeq = themeSeq;
     }
 
@@ -32,11 +32,11 @@ public class GraduationTheme {
         this.themeIntroduction = themeIntroduction;
     }
 
-    public String getthemeTeacher() {
+    public int getthemeTeacher() {
         return themeTeacher;
     }
 
-    public void setthemeTeacher(String themeTeacher) {
+    public void setthemeTeacher(int themeTeacher) {
         this.themeTeacher = themeTeacher;
     }
 

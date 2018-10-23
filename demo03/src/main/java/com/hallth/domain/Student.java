@@ -15,6 +15,30 @@ public class Student {
 
     private String stuPassword;
 
+    private String theme;
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "stuSeq=" + stuSeq +
+                ", stuCode='" + stuCode + '\'' +
+                ", stuName='" + stuName + '\'' +
+                ", stuGender='" + stuGender + '\'' +
+                ", stuAge=" + stuAge +
+                ", stuClassNum='" + stuClassNum + '\'' +
+                ", stuPassword='" + stuPassword + '\'' +
+                ", theme='" + theme + '\'' +
+                '}';
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
     public Integer getStuSeq() {
         return stuSeq;
     }
@@ -71,16 +95,4 @@ public class Student {
         this.stuPassword = stuPassword;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "stuSeq=" + stuSeq +
-                ", stuCode='" + stuCode + '\'' +
-                ", stuName='" + stuName + '\'' +
-                ", stuGender='" + stuGender + '\'' +
-                ", stuAge=" + stuAge +
-                ", stuClassNum='" + stuClassNum + '\'' +
-                ", stuPassword='" + stuPassword + '\'' +
-                '}';
-    }
 }
