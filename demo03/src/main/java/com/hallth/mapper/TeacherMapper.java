@@ -8,4 +8,6 @@ public interface TeacherMapper {
 
     Teacher selectBySeq(Teacher teacher);
 
+    Teacher userCheck(Teacher teacher);
+
 }

@@ -43,4 +43,9 @@ public class TeacherServiceImpl implements TeacherService {
         return queryParam;//teacherMapper.selectBySeq(queryParam);
     }
 
+    public Teacher userCheck(Teacher teacher){
+        teacher = teacherMapper.userCheck(teacher);
+        return teacher;
+    }
+
 }

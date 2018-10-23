@@ -26,7 +26,8 @@ To change this template use File | Settings | File Templates.
 </head>
 <body>
 <div class="showCenter">
-    <c:if test="${userRole == 1}">
+    <!-- role: 0-管理员；1-导师；2-学生 -->
+    <c:if test="${role == 1}">
         <input type="button" class="btn btn-primary" value="新增灯谜" data-toggle="modal" data-target="#addDengmi" onclick=""/><br/>
     </c:if>
     <hr/>

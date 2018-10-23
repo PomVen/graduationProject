@@ -30,4 +30,11 @@
         from teacher
         where teacher_name=#{teacherName, jdbcType=VARCHAR}
     </select>
+
+    <select id="userCheck" parameterType="com.hallth.domain.Teacher" resultMap="">
+        select
+        <include refid="Base_Column_List"/>
+        from teacher
+        where teacher_password=#{teacherPassword, jdbcType=VARCHAR} AND teacher_id=#{teacherId, jdbcType=VARCHAR}
+    </select>
 </mapper>

@@ -12,6 +12,15 @@ public class Teacher {
     private String teacherMajor;
     private String teacherAddress;
     private String teacherEmail;
+    private String teacherPassword;
+
+    public String getTeacherPassword() {
+        return teacherPassword;
+    }
+
+    public void setTeacherPassword(String teacherPassword) {
+        this.teacherPassword = teacherPassword;
+    }
 
     public int getteacherSeq() {
         return teacherSeq;

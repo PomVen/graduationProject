@@ -7,6 +7,7 @@ import com.hallth.service.impl.TeacherServiceImpl;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -85,6 +86,8 @@ public class LoginController {
         pageBean.setCurrPage(1);
         model.addAttribute("pagemsg", pageBean);
         model.addAttribute("count", 0);
+        int role = (int)session.getAttribute("role");
+        model.addAttribute("role",role);
         return "themeChose";
     }
 
@@ -134,8 +137,6 @@ public class LoginController {
             model.addAttribute("errMsg","密码不能为空！");
             return "loginPage";
         }
-
-
         /**
          * 测试用逻辑
          * */
@@ -144,6 +145,7 @@ public class LoginController {
             UserLoginInfo userLoginInfo = new UserLoginInfo();
             userLoginInfo.setLoginUserName(loginUserName);
             request.getSession().setAttribute("loginUserInfo",userLoginInfo);
+            request.getSession().setAttribute("role",1);
             return "func";
         }
 
@@ -153,9 +155,19 @@ public class LoginController {
         student.setStuPassword(loginPassword);
         student = studentService.userCheck(student);
         if(student == null){
-            logger.info("用户不存在或密码错误！");
-            model.addAttribute("errMsg","用户不存在或密码错误！");
-            return "loginPage";
+            Teacher teacher = new Teacher();
+            teacher.setteacherId(loginUserName);
+            teacher.setTeacherPassword(loginPassword);
+            teacher = teacherService.userCheck(teacher);
+            if(teacher == null) {
+                logger.info("用户不存在或密码错误！");
+                model.addAttribute("errMsg", "用户不存在或密码错误！");
+                return "loginPage";
+            } else {
+                request.getSession().setAttribute("role",1);
+            }
+        } else {
+            request.getSession().setAttribute("role",2);
         }
         UserLoginInfo userLoginInfo = new UserLoginInfo();
         userLoginInfo.setLoginUserName(loginUserName);

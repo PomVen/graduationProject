@@ -27,7 +27,7 @@
             filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#2d9b95',endColorstr='#0e1329',GradientType=1 );
         }
         .box {background:#000000; position:absolute;margin-left:-14%; z-index:3;opacity: 0.6;left:70%;}
-        .box-login{width:450px; height:295px;margin-top:-10%;top:50%;}
+        .box-login{width:450px; height:355px;margin-top:-10%;top:50%;}
     </style>
 </head>
 <body>
@@ -46,7 +46,6 @@
     </header>
     <div class="beg-login-main">
         <form action="/login/userCheck" class="layui-form" method="post" onsubmit="return login()">
-            <input name="__RequestVerificationToken" type="hidden" value="fkfh8D89BFqTdrE2iiSdG_L781RSRtdWOH411poVUWhxzA5MzI8es07g6KPYQh9Log-xf84pIR2RIAEkOokZL3Ee3UKmX0Jc8bW8jOdhqo81" />
             <div class="layui-form-item">
                 <label class="beg-login-icon">
                     <i class="layui-icon">&#xe612;</i>
