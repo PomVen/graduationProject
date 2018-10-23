@@ -17,26 +17,17 @@
         teacher_seq, teacher_name, teacher_id, teacher_age, teacher_gender, teacher_phone, teacher_major, teacher_address, teacher_email
     </sql>
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    <select id="selectBySeq" parameterType="com.hallth.domain.Teacher" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from graduation_theme
-        where teacher_seq = #{teacherSeq,jdbcType=INTEGER}
+        from teacher
+        where teacher_seq=#{teacherSeq, jdbcType=INTEGER}
     </select>
 
-    <insert id="insert" parameterType="com.hallth.domain.Teacher">
-
-    </insert>
-
-    <insert id="insertSelective" parameterType="com.hallth.domain.Teacher">
-
-    </insert>
-
-    <update id="updateByPrimaryKeySelective" parameterType="com.hallth.domain.Teacher">
-
-    </update>
-
-    <update id="updateByPrimaryKey" parameterType="com.hallth.domain.Teacher">
-
-    </update>
+    <select id="selectByName" parameterType="com.hallth.domain.Teacher" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from teacher
+        where teacher_name=#{teacherName, jdbcType=VARCHAR}
+    </select>
 </mapper>

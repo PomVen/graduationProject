@@ -10,4 +10,6 @@ public interface StudentService {
 
     int updateStudent(Student student);
 
+    Student quetyByUserName(Student student);
+
 }

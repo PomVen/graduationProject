@@ -2,7 +2,9 @@ package com.hallth.service.impl;
 
 import com.hallth.domain.GraduationTheme;
 import com.hallth.domain.PageBean;
+import com.hallth.domain.Teacher;
 import com.hallth.mapper.GraduationThemeMapper;
+import com.hallth.mapper.TeacherMapper;
 import com.hallth.service.GraduationThemeService;
 
 import javax.annotation.Resource;
@@ -13,6 +15,9 @@ public class GraduationThemeServiceImpl implements GraduationThemeService {
 
     @Resource
     private GraduationThemeMapper graduationThemeMapper;
+
+    @Resource
+    private TeacherMapper teacherMapper;
 
 
     @Override
@@ -33,5 +38,14 @@ public class GraduationThemeServiceImpl implements GraduationThemeService {
         result.setTotalCount(res.size());
         result.setLists(res);
         return result;
+    }
+
+    public Teacher getTeacherByTheme(GraduationTheme theme){
+        theme = graduationThemeMapper.queryBySeq(theme);
+        int teacherSeq = theme.getthemeTeacher();
+        Teacher teacher = new Teacher();
+        teacher.setteacherSeq(teacherSeq);
+        teacher = teacherMapper.selectBySeq(teacher);
+        return teacher;
     }
 }

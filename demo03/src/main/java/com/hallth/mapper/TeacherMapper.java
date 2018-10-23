@@ -6,4 +6,6 @@ public interface TeacherMapper {
 
     Teacher selectByName(Teacher param);
 
+    Teacher selectBySeq(Teacher teacher);
+
 }

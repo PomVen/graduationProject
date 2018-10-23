@@ -16,4 +16,6 @@ public interface StudentMapper {
     int updateByPrimaryKey(Student record);
 
     Student userLoginCheck(Student student);
+
+    Student selectByStudentName(Student student);
 }

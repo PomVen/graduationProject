@@ -9,9 +9,11 @@
         <result column="stu_age" property="stuAge" jdbcType="INTEGER"/>
         <result column="stu_class_num" property="stuClassNum" jdbcType="VARCHAR"/>
         <result column="stu_password" property="stuPassword" jdbcType="VARCHAR"/>
+        <result column="theme" property="theme" jdbcType="VARCHAR"/>
+
     </resultMap>
     <sql id="Base_Column_List">
-    stu_seq, stu_code, stu_name, stu_gender, stu_age, stu_class_num, stu_password
+    stu_seq, stu_code, stu_name, stu_gender, stu_age, stu_class_num, stu_password, theme
   </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -26,10 +28,10 @@
     <insert id="insert" parameterType="com.hallth.domain.Student">
     insert into student (stu_seq, stu_code, stu_name, 
       stu_gender, stu_age, stu_class_num, 
-      stu_password)
+      stu_password, theme)
     values (#{stuSeq,jdbcType=INTEGER}, #{stuCode,jdbcType=VARCHAR}, #{stuName,jdbcType=VARCHAR}, 
       #{stuGender,jdbcType=VARCHAR}, #{stuAge,jdbcType=INTEGER}, #{stuClassNum,jdbcType=VARCHAR}, 
-      #{stuPassword,jdbcType=VARCHAR})
+      #{stuPassword,jdbcType=VARCHAR}, #{theme, jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="com.hallth.domain.Student">
         insert into student
@@ -55,6 +57,9 @@
             <if test="stuPassword != null">
                 stu_password,
             </if>
+            <if test="theme != null">
+                theme,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="stuSeq != null">
@@ -77,6 +82,9 @@
             </if>
             <if test="stuPassword != null">
                 #{stuPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="theme != null">
+                #{theme, jdbcType=VARCHAR}
             </if>
         </trim>
     </insert>
@@ -101,6 +109,9 @@
             <if test="stuPassword != null">
                 stu_password = #{stuPassword,jdbcType=VARCHAR},
             </if>
+            <if test="theme != null">
+                theme = #{theme, jdbcType=VARCHAR}
+            </if>
         </set>
         where stu_seq = #{stuSeq,jdbcType=INTEGER}
     </update>
@@ -111,7 +122,8 @@
       stu_gender = #{stuGender,jdbcType=VARCHAR},
       stu_age = #{stuAge,jdbcType=INTEGER},
       stu_class_num = #{stuClassNum,jdbcType=VARCHAR},
-      stu_password = #{stuPassword,jdbcType=VARCHAR}
+      stu_password = #{stuPassword,jdbcType=VARCHAR},
+      theme=#{theme, jdbcType=VARCHAR}
     where stu_seq = #{stuSeq,jdbcType=INTEGER}
   </update>
 
@@ -120,5 +132,12 @@
         <include refid="Base_Column_List"/>
         from student
         where stu_name = #{stuName,jdbcType=VARCHAR} and stu_password = #{stuPassword,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByStudentName" resultMap="BaseResultMap" parameterType="com.hallth.domain.Student">
+        select
+        <include refid="Base_Column_List"/>
+        from student
+        where stu_name = #{stuName, jdbcType=VARCHAR}
     </select>
 </mapper>

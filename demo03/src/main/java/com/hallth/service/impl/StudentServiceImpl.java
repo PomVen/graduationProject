@@ -33,4 +33,10 @@ public class StudentServiceImpl implements StudentService {
         return result;
     }
 
+    public Student quetyByUserName(Student student){
+        logger.info("查询当前登录的学生信息;param="+student.toString());
+        student = studentMapper.selectByStudentName(student);
+        return student;
+    }
+
 }
