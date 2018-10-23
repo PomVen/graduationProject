@@ -12,4 +12,7 @@ public interface GraduationThemeService {
 
     Teacher getTeacherByTheme(GraduationTheme theme);
 
+    GraduationTheme queryThemeByTitle(GraduationTheme theme);
+
+
 }

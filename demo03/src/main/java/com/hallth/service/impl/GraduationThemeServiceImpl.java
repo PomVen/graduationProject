@@ -61,4 +61,14 @@ public class GraduationThemeServiceImpl implements GraduationThemeService {
         teacher.setteacherName("霍仰帅");
         return teacher;
     }
+
+    public GraduationTheme queryThemeByTitle(GraduationTheme theme){
+//        theme = graduationThemeMapper.queryByTitle(theme);?
+        //测试数据
+        theme.setthemeTitle("毕设课题选择");
+        theme.setthemeTeacher(1);
+        theme.setthemeIntroduction("学生选择毕设题目，并跟进进度");
+        theme.setthemeSeq(1);
+        return theme;
+    }
 }
