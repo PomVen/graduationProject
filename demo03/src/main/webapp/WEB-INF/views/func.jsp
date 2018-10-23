@@ -43,7 +43,19 @@
 <script type="text/javascript" src="/assets/js/config-min.js"></script>
 <script>
     BUI.use('common/main',function(){
-        var config = [{id:'1',menu:[{text:'系统管理',items:[{id:'12',text:'机构管理',href:'/login/regit'},{id:'3',text:'角色管理',href:'Role/index.html'},{id:'4',text:'用户管理',href:'User/index.html'},{id:'6',text:'菜单管理',href:'Menu/index.html'}]}]},{id:'7',homePage : '9',menu:[{text:'业务管理',items:[{id:'9',text:'查询业务',href:'Node/index.html'}]}]}];
+        var config = [{
+            id:'1',menu:[{
+                text:'我的课题',items:[
+                    {id:'2',text:'导师介绍',href:'/login/teacherIntroduce'},
+                    {id:'3',text:'课题介绍',href:'/login/themeDescription'},
+                    {id:'4',text:'课题进度',href:'/login/themeProgress'},
+                    {id:'6',text:'课题成果',href:'/login/themeResults'}
+        ]}]},{
+                id:'7',homePage : '9',menu:[{
+                    text:'课题选择',items:[
+                        {id:'9',text:'课题选择',href:'/login/themeChose'}
+                ]}]
+        }];
         new PageUtil.MainPage({
             modulesConfig : config
         });

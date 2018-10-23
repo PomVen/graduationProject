@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.ws.RequestWrapper;
 
 @Controller
@@ -41,6 +42,37 @@ public class LoginController {
         return "index";
     }
 
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response){
+        HttpSession session = request.getSession();
+        session.removeAttribute("loginUserInfo");//用户退出登录，删除登录信息
+        return "logout";
+    }
+
+    @RequestMapping("/teacherIntroduce")
+    public String teacherIntroduce(){
+        return "teacherIntroduce";
+    }
+
+    @RequestMapping("/themeChose")
+    public String themeChose(){
+        return "themeChose";
+    }
+
+    @RequestMapping("/themeDescription")
+    public String themeDescription(){
+        return "themeDescription";
+    }
+
+    @RequestMapping("/themeProgress")
+    public String themeProgress(){
+        return "themeProgress";
+    }
+
+    @RequestMapping("/themeResults")
+    public String themeResults(){
+        return "themeResults";
+    }
     /**
      * 登录的用户名密码校验
      * */
