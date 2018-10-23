@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hallth.mapper.GraduationThemeMapper">
+    <resultMap id="BaseResultMap" type="com.hallth.domain.GraduationTheme">
+        <id column="theme_seq" property="themeSeq" jdbcType="INTEGER"/>
+        <result column="theme_title" property="themeTitle" jdbcType="VARCHAR"/>
+        <result column="theme_introduction" property="themeIntroduction" jdbcType="VARCHAR"/>
+        <result column="theme_teacher" property="themeTeacher" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        theme_seq, theme_title, theme_introduction, theme_teacher
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from graduation_theme
+        where theme_seq = #{themeSeq,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.hallth.domain.GraduationTheme">
+        insert into graduation_theme (theme_seq, theme_title, theme_introduction, theme_teacher)
+        values (#{themeSeq,jdbcType=INTEGER}, #{themeTitle,jdbcType=VARCHAR}, #{themeIntroduction,jdbcType=VARCHAR},
+          #{themeTeacher,jdbcType=VARCHAR}
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.hallth.domain.GraduationTheme">
+        insert into graduation_theme
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="themeSeq != null">
+                theme_seq,
+            </if>
+            <if test="themeTitle != null">
+                theme_title,
+            </if>
+            <if test="themeIntroduction != null">
+                theme_introduction,
+            </if>
+            <if test="themeTeacher != null">
+                theme_teacher,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="themeSeq != null">
+                #{themeSeq,jdbcType=INTEGER},
+            </if>
+            <if test="themeTitle != null">
+                #{themeTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="themeIntroduction != null">
+                #{themeIntroduction,jdbcType=VARCHAR},
+            </if>
+            <if test="themeTeacher != null">
+                #{themeTeacher,jdbcType=VARCHAR},
+            </if>
+        </trim>
+      </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.hallth.domain.GraduationTheme">
+
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.hallth.domain.GraduationTheme">
+
+  </update>
+</mapper>

@@ -29,8 +29,8 @@
     <div class="dl-main-nav">
         <div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
         <ul id="J_Nav"  class="nav-list ks-clear">
-            <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">系统管理</div></li>
-            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">业务管理</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">我的课题</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">课题选择</div></li>
         </ul>
     </div>
     <ul id="J_NavContent" class="dl-tab-conten">
