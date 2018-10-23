@@ -8,4 +8,6 @@ public interface GraduationThemeMapper {
     List<GraduationTheme> query(GraduationTheme graduationTheme);
 
     GraduationTheme queryBySeq(GraduationTheme graduationTheme);
+
+    GraduationTheme queryByTitle(GraduationTheme graduationTheme);
 }

@@ -7,7 +7,16 @@ public class GraduationTheme {
     private String themeTitle;
     private String themeIntroduction;
     private int themeTeacher;
+    //非数据库字段
+    private String teacherName;
 
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
     public int getthemeSeq() {
         return themeSeq;
     }

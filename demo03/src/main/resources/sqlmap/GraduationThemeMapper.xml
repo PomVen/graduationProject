@@ -11,56 +11,17 @@
         theme_seq, theme_title, theme_introduction, theme_teacher
     </sql>
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    <select id="queryByTitle" resultMap="BaseResultMap" parameterType="com.hallth.domain.GraduationTheme">
         select
         <include refid="Base_Column_List"/>
         from graduation_theme
-        where theme_seq = #{themeSeq,jdbcType=INTEGER}
+        where theme_title = #{themeTitle, jdbcType=VARCHAR}
     </select>
 
-    <insert id="insert" parameterType="com.hallth.domain.GraduationTheme">
-        insert into graduation_theme (theme_seq, theme_title, theme_introduction, theme_teacher)
-        values (#{themeSeq,jdbcType=INTEGER}, #{themeTitle,jdbcType=VARCHAR}, #{themeIntroduction,jdbcType=VARCHAR},
-          #{themeTeacher,jdbcType=VARCHAR}
-    </insert>
-
-    <insert id="insertSelective" parameterType="com.hallth.domain.GraduationTheme">
-        insert into graduation_theme
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="themeSeq != null">
-                theme_seq,
-            </if>
-            <if test="themeTitle != null">
-                theme_title,
-            </if>
-            <if test="themeIntroduction != null">
-                theme_introduction,
-            </if>
-            <if test="themeTeacher != null">
-                theme_teacher,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="themeSeq != null">
-                #{themeSeq,jdbcType=INTEGER},
-            </if>
-            <if test="themeTitle != null">
-                #{themeTitle,jdbcType=VARCHAR},
-            </if>
-            <if test="themeIntroduction != null">
-                #{themeIntroduction,jdbcType=VARCHAR},
-            </if>
-            <if test="themeTeacher != null">
-                #{themeTeacher,jdbcType=VARCHAR},
-            </if>
-        </trim>
-      </insert>
-
-    <update id="updateByPrimaryKeySelective" parameterType="com.hallth.domain.GraduationTheme">
-
-    </update>
-
-    <update id="updateByPrimaryKey" parameterType="com.hallth.domain.GraduationTheme">
-
-  </update>
+    <select id="queryBySeq" resultMap="BaseResultMap" parameterType="com.hallth.domain.GraduationTheme">
+        select
+        <include refid="Base_Column_List"/>
+        from graduation_theme
+        where theme_seq = #{themeSeq, jdbcType=INTEGER}
+    </select>
 </mapper>
