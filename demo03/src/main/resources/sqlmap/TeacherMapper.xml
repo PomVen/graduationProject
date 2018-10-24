@@ -37,4 +37,8 @@
         from teacher
         where teacher_password=#{teacherPassword, jdbcType=VARCHAR} AND teacher_id=#{teacherId, jdbcType=VARCHAR}
     </select>
+
+    <select id="selectByNameFuzzyQuery" resultMap="java.lang.Integer" parameterType="com.hallth.domain.Teacher">
+        select teacher_seq from teacher where teacher_name like '%' || #{teacherName} || '%'
+    </select>
 </mapper>

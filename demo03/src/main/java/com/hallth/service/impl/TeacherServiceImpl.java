@@ -6,6 +6,8 @@ import com.hallth.service.TeacherService;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class TeacherServiceImpl implements TeacherService {
@@ -48,4 +50,12 @@ public class TeacherServiceImpl implements TeacherService {
         return teacher;
     }
 
+    public List<Integer> selectByNameFuzzyQuery(String teacherName){
+        Teacher teacher = new Teacher();
+        teacher.setteacherName(teacherName);
+        List<Integer> seqList = new ArrayList<Integer>();//teacherMapper.selectByNameFuzzyQuery(teacher);
+        seqList.add(1);
+        seqList.add(2);
+        return seqList;
+    }
 }

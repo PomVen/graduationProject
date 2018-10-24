@@ -2,6 +2,8 @@ package com.hallth.mapper;
 
 import com.hallth.domain.Teacher;
 
+import java.util.List;
+
 public interface TeacherMapper {
 
     Teacher selectByName(Teacher param);
@@ -9,5 +11,7 @@ public interface TeacherMapper {
     Teacher selectBySeq(Teacher teacher);
 
     Teacher userCheck(Teacher teacher);
+
+    List<Integer> selectByNameFuzzyQuery(Teacher teacher);
 
 }

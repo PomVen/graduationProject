@@ -71,4 +71,33 @@ public class GraduationThemeServiceImpl implements GraduationThemeService {
         theme.setthemeSeq(1);
         return theme;
     }
+
+    public PageBean<GraduationTheme> selectByTeacherAndTitle(GraduationTheme theme){
+        List<GraduationTheme> queryList = new ArrayList<>();//graduationThemeMapper.selectByTeacherAndTitle(theme);
+        //测试用数据
+        theme.setthemeTitle("毕设课题选择");
+        theme.setthemeTeacher(1);
+        theme.setthemeIntroduction("学生选择毕设题目，并跟进进度");
+        theme.setthemeSeq(1);
+        queryList.add(theme);
+        theme.setthemeTitle("淘宝在线商城");
+        theme.setthemeTeacher(2);
+        theme.setthemeIntroduction("模拟电子商务网站");
+        theme.setthemeSeq(2);
+        queryList.add(theme);
+        theme.setthemeTitle("聊天软件");
+        theme.setthemeTeacher(1);
+        theme.setthemeIntroduction("模拟QQ");
+        theme.setthemeSeq(3);
+        queryList.add(theme);
+        PageBean pageBean = new PageBean();
+        pageBean.setLists(queryList);
+        pageBean.setTotalCount(queryList.size());
+        return pageBean;
+    }
+
+    @Override
+    public PageBean<GraduationTheme> getGraduationTheme(GraduationTheme searchModel, int pageNum, int pageSize) {
+        return null;
+    }
 }

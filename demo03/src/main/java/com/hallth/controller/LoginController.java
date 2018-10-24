@@ -15,6 +15,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/login")
@@ -258,4 +260,32 @@ public class LoginController {
             return "foundPassword";
         }
     }
+
+    @RequestMapping("/queryTheme")
+    public String queryTheme(@RequestParam("teacherName")String teacherName, @RequestParam("themeTitle")String themeTitle,
+                             HttpServletRequest request, HttpServletResponse response, Model model){
+        logger.info("查询课题");
+        GraduationTheme graduationTheme = new GraduationTheme();
+        List<Integer> teacherSeqList = new ArrayList<Integer>();
+        if(null != teacherName && !"".equals(teacherName.trim())){
+            teacherSeqList = teacherService.selectByNameFuzzyQuery(teacherName);
+        }
+        if(null != themeTitle && !"".equals(themeTitle.trim())){
+            graduationTheme.setthemeTitle(themeTitle);
+        }
+        String seqStr = "";
+        if(teacherSeqList.size() > 0){
+            for(Integer seq : teacherSeqList){
+                seqStr = seqStr + seq + ",";
+            }
+            seqStr = seqStr + "";
+            graduationTheme.setTeacherName(seqStr);
+        }
+        PageBean<GraduationTheme> pageBean = graduationThemeService.selectByTeacherAndTitle(graduationTheme);
+        pageBean.setCurrPage(1);
+        pageBean.setTotalPage(1);
+        pageBean.setPageSize(10);
+        return "themeChose";
+    }
+
 }

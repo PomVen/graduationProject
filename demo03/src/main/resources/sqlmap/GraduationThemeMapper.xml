@@ -24,4 +24,11 @@
         from graduation_theme
         where theme_seq = #{themeSeq, jdbcType=INTEGER}
     </select>
+
+    <select id="selectByTeacherAndTitle" parameterType="com.hallth.domain.GraduationTheme" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from graduation_theme
+        where theme_teacher in (#{themeTeacher}) and theme_title like '%' || #{themeTitle} || '%'
+    </select>
 </mapper>

@@ -14,5 +14,9 @@ public interface GraduationThemeService {
 
     GraduationTheme queryThemeByTitle(GraduationTheme theme);
 
+    PageBean<GraduationTheme> selectByTeacherAndTitle(GraduationTheme graduationTheme);
+
+    PageBean<GraduationTheme> getGraduationTheme(GraduationTheme searchModel,int pageNum,int pageSize);
+
 
 }
