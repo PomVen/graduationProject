@@ -10,13 +10,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/login")
@@ -262,8 +265,9 @@ public class LoginController {
     }
 
     @RequestMapping("/queryTheme")
-    public String queryTheme(@RequestParam("teacherName")String teacherName, @RequestParam("themeTitle")String themeTitle,
-                             HttpServletRequest request, HttpServletResponse response, Model model){
+    @ResponseBody
+    public Map queryTheme(@RequestParam("teacherName")String teacherName, @RequestParam("themeTitle")String themeTitle,
+                          HttpServletRequest request, HttpServletResponse response, Model model){
         logger.info("查询课题");
         GraduationTheme graduationTheme = new GraduationTheme();
         List<Integer> teacherSeqList = new ArrayList<Integer>();
@@ -285,7 +289,11 @@ public class LoginController {
         pageBean.setCurrPage(1);
         pageBean.setTotalPage(1);
         pageBean.setPageSize(10);
-        return "themeChose";
+
+        Map map = new HashMap();
+        map.put("rows",pageBean.getLists());
+        map.put("total",100);
+        return map;
     }
 
 }
