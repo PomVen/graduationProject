@@ -41,4 +41,9 @@ public class StudentServiceImpl implements StudentService {
         return student;
     }
 
+    public boolean updateByStudentName(Student student){
+        int a  = 1;//studentMapper.updateByStudentName(student);
+        return a > 0 ? true : false;
+    }
+
 }

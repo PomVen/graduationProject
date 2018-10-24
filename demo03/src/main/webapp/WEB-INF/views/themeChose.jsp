@@ -18,8 +18,49 @@ To change this template use File | Settings | File Templates.
     <script src="/js/bootstrap-table-zh-CN.js"></script>
 
 </head>
-<div style="width: 1000px;">
-    <p id="page-content" class="animated fadeInRight">
+<div style="width: 90%; height: 30%">
+    <!-- role: 0-管理员；1-导师；2-学生 -->
+    <c:if test="${role == 1}">
+        <!-- 按钮触发模态框 -->
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            新增课题
+        </button>
+        <!-- 模态框（Modal） -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header titleTop">
+                        <h4 class="modal-title" id="myModalLabel">
+                            新增课题
+                        </h4>
+                    </div>
+                    <form id="addTheme" action="/login/addTheme">
+                        <div style="border-radius: 6px; width: 90%; text-align: center">
+                            <div class="form-group">
+                                <label for="addThemeTitle" class="col-sm-2 control-label">课题名字</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control input-group-lg" id="addThemeTitle" name="addThemeTitle" placeholder="请输入名字">
+                                </div>
+                            </div>
+                            <div style="height: 2%"></div>
+                            <div class="form-group">
+                                <label for="addThemeDesc" class="col-sm-2 control-label">课题描述</label>
+                                <div class="col-sm-10">
+                                    <textarea type="text" class="form-control input-group-lg" id="addThemeDesc" name="addThemeDesc" placeholder="请输入名字"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button class="btn btn-primary" type="submit" id="addThemeSubmit">查询</button>
+                            <button class="btn btn-primary" id="addReset" type="reset">重置</button>
+                        </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+    </c:if>
     <p class="col-sm-4 col-md-3 col-lg-3" style="width: 100%;">
     <form  id="search_User">
         <p class="panel-body search_box">
@@ -38,10 +79,9 @@ To change this template use File | Settings | File Templates.
     </form>
     </p>
 </div>
-<div style="height:auto;">
+<div style="height:60%;">
     <table id="userListTable" ></table>
 </div>
-</p>
 </html>
 <script>
     $(function(){
@@ -52,40 +92,25 @@ To change this template use File | Settings | File Templates.
                 valign: 'middle',
             },
             {
-                title: 'ID',
-                field: 'id',
+                title: '课题序号',
+                field: 'themeSeq',
                 align: 'center',
                 valign: 'middle',
             },
             {
-                title: '用户姓名',
-                field: 'name',
+                title: '课题名称',
+                field: 'themeTitle',
                 align: 'center',
                 valign: 'middle',
             },
             {
-                title: '性别',
-                field: 'sex',
+                title: '课题描述',
+                field: 'themeIntroduction',
                 align: 'center',
             },
             {
-                title: '用户账号',
-                field: 'username',
-                align: 'center',
-            },
-            {
-                title: '手机号',
-                field: 'phone',
-                align: 'center',
-            },
-            {
-                title: '邮箱',
-                field: 'email',
-                align: 'center',
-            },
-            {
-                title: '权限',
-                field: 'rolename',
+                title: '导师',
+                field: 'teacherName',
                 align: 'center',
             },
             {
@@ -93,9 +118,8 @@ To change this template use File | Settings | File Templates.
                 field: 'id',
                 align: 'center',
                 formatter:function(value,row,index){
-                    var e = '<button href="#" class="btn btn-primary"  onclick="edit(\''+ row.id + '\')">编辑</button> ';
-                    var d = '<button href="#" class="btn btn-danger"  onclick="del(\''+ row.id +'\')">删除</button> ';
-                    return e+d;
+                    var e = '<button href="#" class="btn btn-primary"  onclick="chose(\''+ row.themeTitle + '\')">编辑</button> ';
+                    return e;
                 }
             }
         ];
@@ -126,10 +150,10 @@ To change this template use File | Settings | File Templates.
             showRefresh:false,//是否显示刷新按钮
             sidePagination: "server", //服务端处理分页
             pageNumber:1,
-            pageSize:2,
+            pageSize:10,
             pageList:[5,10, 25, 50, 100],
             undefinedText:'--',
-            uniqueId: "id", //每一行的唯一标识，一般为主键列
+            uniqueId: "themeSeq", //每一行的唯一标识，一般为主键列
             queryParamsType:'',
             queryParams: queryParams,//传递参数（*）
             columns: columns
@@ -150,5 +174,20 @@ To change this template use File | Settings | File Templates.
     //搜索
     function serachUser() {
         $("#userListTable").bootstrapTable('refresh');
+    }
+
+    function chose(rowTitle) {
+        $.ajax({
+            type: "GET",
+            url: "/login/choseTheme",
+            data: {themeTitle:rowTitle},
+            dataType: "json",
+            success: function(data){
+                if(data){
+                    alert("课题选择成功");
+                    $("#userListTable").bootstrapTable('refresh');
+                }
+            }
+        });
     }
 </script>

@@ -75,21 +75,27 @@ public class GraduationThemeServiceImpl implements GraduationThemeService {
     public PageBean<GraduationTheme> selectByTeacherAndTitle(GraduationTheme theme){
         List<GraduationTheme> queryList = new ArrayList<>();//graduationThemeMapper.selectByTeacherAndTitle(theme);
         //测试用数据
-        theme.setthemeTitle("毕设课题选择");
-        theme.setthemeTeacher(1);
-        theme.setthemeIntroduction("学生选择毕设题目，并跟进进度");
-        theme.setthemeSeq(1);
-        queryList.add(theme);
-        theme.setthemeTitle("淘宝在线商城");
-        theme.setthemeTeacher(2);
-        theme.setthemeIntroduction("模拟电子商务网站");
-        theme.setthemeSeq(2);
-        queryList.add(theme);
-        theme.setthemeTitle("聊天软件");
-        theme.setthemeTeacher(1);
-        theme.setthemeIntroduction("模拟QQ");
-        theme.setthemeSeq(3);
-        queryList.add(theme);
+        GraduationTheme theme1 = new GraduationTheme();
+        theme1.setthemeTitle("毕设课题选择");
+        theme1.setTeacherName("张三");
+        theme1.setthemeIntroduction("学生选择毕设题目，并跟进进度");
+        theme1.setthemeSeq(1);
+        queryList.add(theme1);
+
+        GraduationTheme theme2 = new GraduationTheme();
+        theme2.setthemeTitle("淘宝在线商城");
+        theme2.setTeacherName("李四");
+        theme2.setthemeIntroduction("模拟电子商务网站");
+        theme2.setthemeSeq(2);
+        queryList.add(theme2);
+
+        GraduationTheme theme3 = new GraduationTheme();
+        theme3.setthemeTitle("聊天软件");
+        theme3.setTeacherName("王五");
+        theme3.setthemeIntroduction("模拟QQ");
+        theme3.setthemeSeq(3);
+        queryList.add(theme3);
+
         PageBean pageBean = new PageBean();
         pageBean.setLists(queryList);
         pageBean.setTotalCount(queryList.size());

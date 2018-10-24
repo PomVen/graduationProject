@@ -18,4 +18,6 @@ public interface StudentMapper {
     Student userLoginCheck(Student student);
 
     Student selectByStudentName(Student student);
+
+    int updateByStudentName(Student student);
 }

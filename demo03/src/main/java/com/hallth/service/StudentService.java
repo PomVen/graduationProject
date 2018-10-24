@@ -12,4 +12,6 @@ public interface StudentService {
 
     Student quetyByUserName(Student student);
 
+    boolean updateByStudentName(Student student);
+
 }

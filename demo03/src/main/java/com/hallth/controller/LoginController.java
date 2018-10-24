@@ -153,8 +153,6 @@ public class LoginController {
             request.getSession().setAttribute("role",1);
             return "func";
         }
-
-
         Student student = new Student();
         student.setStuName(loginUserName);
         student.setStuPassword(loginPassword);
@@ -289,11 +287,23 @@ public class LoginController {
         pageBean.setCurrPage(1);
         pageBean.setTotalPage(1);
         pageBean.setPageSize(10);
-
+        List<GraduationTheme> data = pageBean.getLists();
         Map map = new HashMap();
-        map.put("rows",pageBean.getLists());
-        map.put("total",100);
+        map.put("rows",data);
+        map.put("total",20);
         return map;
+    }
+
+    @RequestMapping("choseTheme")
+    public boolean choseTheme(@RequestParam("themeTitle")String title, HttpServletResponse response, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserLoginInfo userLoginInfo = (UserLoginInfo)session.getAttribute("loginUserInfo");
+        String userName = userLoginInfo.getLoginUserName();
+        Student student = new Student();
+        student.setStuName(userName);
+        student.setTheme(title);
+        boolean bool = studentService.updateByStudentName(student);
+        return bool;
     }
 
 }

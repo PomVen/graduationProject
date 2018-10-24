@@ -140,4 +140,11 @@
         from student
         where stu_name = #{stuName, jdbcType=VARCHAR}
     </select>
+
+    <update id="updateByStudentName" parameterType="com.hallth.domain.Student">
+        update student
+        set
+          theme=#{theme, jdbcType=VARCHAR}
+        where stu_name = #{stuName,jdbcType=VARCHAR}
+  </update>
 </mapper>
