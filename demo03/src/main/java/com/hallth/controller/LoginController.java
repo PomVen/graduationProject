@@ -117,6 +117,11 @@ public class LoginController {
         return "themeDescription";
     }
 
+    @RequestMapping("/fileUpload")
+    public String fileUpload(){
+        return "fileUpload";
+    }
+
     @RequestMapping("/themeProgress")
     public String themeProgress(){
         return "themeProgress";

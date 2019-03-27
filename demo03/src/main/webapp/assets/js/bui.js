@@ -30687,7 +30687,7 @@ define('bui/grid/grid',['bui/common','bui/mask','bui/toolbar','bui/list','bui/gr
  *   \u8fd9\u662f\u4e00\u4e2a\u91cd\u6784\u7684\u7248\u672c\uff0c\u5c06Body\u53d6\u6d88\u6389\u4e86\uff0c\u76ee\u7684\u662f\u4e3a\u4e86\u53ef\u4ee5\u5c06Grid\u548cSimpleGrid\u8054\u7cfb\u8d77\u6765\uff0c
  *   \u540c\u65f6\u5c06selection \u7edf\u4e00         
  *//**
- * @fileOverview this class details some util tools of grid,like loadMask, formatter for grid's cell render
+ * @fileOverview this class details some util utils of grid,like loadMask, formatter for grid's cell render
  * @author dxq613@gmail.com, yiminghe@gmail.com
  * @ignore
  */

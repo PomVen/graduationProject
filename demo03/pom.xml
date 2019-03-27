@@ -253,6 +253,19 @@
       <version>2.4</version>
     </dependency>
     <!-- log end -->
+    <!-- 引入poi文件解析的相关JAR包 -->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml-schemas</artifactId>
+      <version>3.15</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.15</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>demo03 Maven Webapp</finalName>
