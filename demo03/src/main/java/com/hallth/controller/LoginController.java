@@ -3,7 +3,6 @@ package com.hallth.controller;
 import com.hallth.domain.*;
 import com.hallth.service.impl.GraduationThemeServiceImpl;
 import com.hallth.service.impl.StudentServiceImpl;
-import com.hallth.service.impl.TeacherServiceImpl;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,8 +28,6 @@ public class LoginController {
     private StudentServiceImpl studentService;
     @Resource
     private GraduationThemeServiceImpl graduationThemeService;
-    @Resource
-    private TeacherServiceImpl teacherService;
     @RequestMapping("/login")
     public String loginPage(){
         return "loginPage";
@@ -67,15 +64,15 @@ public class LoginController {
         student.setStuName(userName);
         student = studentService.quetyByUserName(student);
         String theme = student.getTheme();
-        Teacher teacher = null;
-        if(theme == null || theme.isEmpty()){
-            model.addAttribute("teacherInfo",teacher);
-        } else {
-            GraduationTheme graduationTheme = new GraduationTheme();
-            graduationTheme.setthemeTitle(theme);
-            teacher = graduationThemeService.getTeacherByTheme(graduationTheme);
-            model.addAttribute("teacherInfo",teacher);
-        }
+//        Teacher teacher = null;
+//        if(theme == null || theme.isEmpty()){
+//            model.addAttribute("teacherInfo",teacher);
+//        } else {
+//            GraduationTheme graduationTheme = new GraduationTheme();
+//            graduationTheme.setthemeTitle(theme);
+//            teacher = graduationThemeService.getTeacherByTheme(graduationTheme);
+//            model.addAttribute("teacherInfo",teacher);
+//        }
         return "teacherIntroduce";
     }
 
@@ -111,7 +108,7 @@ public class LoginController {
             GraduationTheme graduationTheme = new GraduationTheme();
             graduationTheme.setthemeTitle(theme);
             graduationTheme = graduationThemeService.queryThemeByTitle(graduationTheme);
-            graduationTheme.setTeacherName(teacherService.selectBySeq(graduationTheme.getthemeTeacher()).getteacherName());
+//            graduationTheme.setTeacherName(teacherService.selectBySeq(graduationTheme.getthemeTeacher()).getteacherName());
             model.addAttribute("theme",graduationTheme);
         }
         return "themeDescription";
@@ -163,17 +160,17 @@ public class LoginController {
         student.setStuPassword(loginPassword);
         student = studentService.userCheck(student);
         if(student == null){
-            Teacher teacher = new Teacher();
-            teacher.setteacherId(loginUserName);
-            teacher.setTeacherPassword(loginPassword);
-            teacher = teacherService.userCheck(teacher);
-            if(teacher == null) {
-                logger.info("用户不存在或密码错误！");
-                model.addAttribute("errMsg", "用户不存在或密码错误！");
-                return "loginPage";
-            } else {
-                request.getSession().setAttribute("role",1);
-            }
+//            Teacher teacher = new Teacher();
+//            teacher.setteacherId(loginUserName);
+//            teacher.setTeacherPassword(loginPassword);
+//            teacher = teacherService.userCheck(teacher);
+//            if(teacher == null) {
+//                logger.info("用户不存在或密码错误！");
+//                model.addAttribute("errMsg", "用户不存在或密码错误！");
+//                return "loginPage";
+//            } else {
+//                request.getSession().setAttribute("role",1);
+//            }
         } else {
             request.getSession().setAttribute("role",2);
         }
@@ -275,7 +272,7 @@ public class LoginController {
         GraduationTheme graduationTheme = new GraduationTheme();
         List<Integer> teacherSeqList = new ArrayList<Integer>();
         if(null != teacherName && !"".equals(teacherName.trim())){
-            teacherSeqList = teacherService.selectByNameFuzzyQuery(teacherName);
+//            teacherSeqList = teacherService.selectByNameFuzzyQuery(teacherName);
         }
         if(null != themeTitle && !"".equals(themeTitle.trim())){
             graduationTheme.setthemeTitle(themeTitle);

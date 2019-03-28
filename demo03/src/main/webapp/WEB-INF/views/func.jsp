@@ -49,7 +49,9 @@
                     {id:'2',text:'导师介绍',href:'/login/teacherIntroduce'},
                     {id:'3',text:'课题介绍',href:'/login/themeDescription'},
                     {id:'4',text:'课题进度',href:'/login/themeProgress'},
-                    {id:'5',text:'上传文件',href:'/login/fileUpload'}
+                    {id:'5',text:'上传文件',href:'/login/fileUpload'},
+                    {id:'6',text:'添加灯谜',href:'/dengmi/showDengmi'}
+
                     // {id:'6',text:'课题成果',href:'/login/themeResults'}
         ]}]},{
                 id:'7',homePage : '9',menu:[{

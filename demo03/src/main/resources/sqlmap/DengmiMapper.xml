@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hallth.mapper.DengmiMapper" >
+  <resultMap id="BaseResultMap" type="com.hallth.domain.Dengmi" >
+    <id column="dengmi_seq" property="dengmiSeq" jdbcType="INTEGER" />
+    <result column="mimian" property="mimian" jdbcType="VARCHAR" />
+    <result column="mimu" property="mimu" jdbcType="VARCHAR" />
+    <result column="mige" property="mige" jdbcType="VARCHAR" />
+    <result column="midi" property="midi" jdbcType="VARCHAR" />
+    <result column="mizhu" property="mizhu" jdbcType="VARCHAR" />
+    <result column="zuozhe" property="zuozhe" jdbcType="VARCHAR" />
+    <result column="jieshi" property="jieshi" jdbcType="VARCHAR" />
+    <result column="shangxi" property="shangxi" jdbcType="VARCHAR" />
+    <result column="leixing" property="leixing" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dengmi_seq, mimian, mimu, mige, midi, mizhu, zuozhe, jieshi, shangxi, leixing
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dengmi
+    where dengmi_seq = #{dengmiSeq,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dengmi
+    where dengmi_seq = #{dengmiSeq,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hallth.domain.Dengmi" >
+    insert into dengmi (dengmi_seq, mimian, mimu, 
+      mige, midi, mizhu, 
+      zuozhe, jieshi, shangxi, 
+      leixing)
+    values (#{dengmiSeq,jdbcType=INTEGER}, #{mimian,jdbcType=VARCHAR}, #{mimu,jdbcType=VARCHAR}, 
+      #{mige,jdbcType=VARCHAR}, #{midi,jdbcType=VARCHAR}, #{mizhu,jdbcType=VARCHAR}, 
+      #{zuozhe,jdbcType=VARCHAR}, #{jieshi,jdbcType=VARCHAR}, #{shangxi,jdbcType=VARCHAR}, 
+      #{leixing,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hallth.domain.Dengmi" >
+    insert into dengmi
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dengmiSeq != null" >
+        dengmi_seq,
+      </if>
+      <if test="mimian != null" >
+        mimian,
+      </if>
+      <if test="mimu != null" >
+        mimu,
+      </if>
+      <if test="mige != null" >
+        mige,
+      </if>
+      <if test="midi != null" >
+        midi,
+      </if>
+      <if test="mizhu != null" >
+        mizhu,
+      </if>
+      <if test="zuozhe != null" >
+        zuozhe,
+      </if>
+      <if test="jieshi != null" >
+        jieshi,
+      </if>
+      <if test="shangxi != null" >
+        shangxi,
+      </if>
+      <if test="leixing != null" >
+        leixing,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dengmiSeq != null" >
+        #{dengmiSeq,jdbcType=INTEGER},
+      </if>
+      <if test="mimian != null" >
+        #{mimian,jdbcType=VARCHAR},
+      </if>
+      <if test="mimu != null" >
+        #{mimu,jdbcType=VARCHAR},
+      </if>
+      <if test="mige != null" >
+        #{mige,jdbcType=VARCHAR},
+      </if>
+      <if test="midi != null" >
+        #{midi,jdbcType=VARCHAR},
+      </if>
+      <if test="mizhu != null" >
+        #{mizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="zuozhe != null" >
+        #{zuozhe,jdbcType=VARCHAR},
+      </if>
+      <if test="jieshi != null" >
+        #{jieshi,jdbcType=VARCHAR},
+      </if>
+      <if test="shangxi != null" >
+        #{shangxi,jdbcType=VARCHAR},
+      </if>
+      <if test="leixing != null" >
+        #{leixing,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hallth.domain.Dengmi" >
+    update dengmi
+    <set >
+      <if test="mimian != null" >
+        mimian = #{mimian,jdbcType=VARCHAR},
+      </if>
+      <if test="mimu != null" >
+        mimu = #{mimu,jdbcType=VARCHAR},
+      </if>
+      <if test="mige != null" >
+        mige = #{mige,jdbcType=VARCHAR},
+      </if>
+      <if test="midi != null" >
+        midi = #{midi,jdbcType=VARCHAR},
+      </if>
+      <if test="mizhu != null" >
+        mizhu = #{mizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="zuozhe != null" >
+        zuozhe = #{zuozhe,jdbcType=VARCHAR},
+      </if>
+      <if test="jieshi != null" >
+        jieshi = #{jieshi,jdbcType=VARCHAR},
+      </if>
+      <if test="shangxi != null" >
+        shangxi = #{shangxi,jdbcType=VARCHAR},
+      </if>
+      <if test="leixing != null" >
+        leixing = #{leixing,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dengmi_seq = #{dengmiSeq,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hallth.domain.Dengmi" >
+    update dengmi
+    set mimian = #{mimian,jdbcType=VARCHAR},
+      mimu = #{mimu,jdbcType=VARCHAR},
+      mige = #{mige,jdbcType=VARCHAR},
+      midi = #{midi,jdbcType=VARCHAR},
+      mizhu = #{mizhu,jdbcType=VARCHAR},
+      zuozhe = #{zuozhe,jdbcType=VARCHAR},
+      jieshi = #{jieshi,jdbcType=VARCHAR},
+      shangxi = #{shangxi,jdbcType=VARCHAR},
+      leixing = #{leixing,jdbcType=VARCHAR}
+    where dengmi_seq = #{dengmiSeq,jdbcType=INTEGER}
+  </update>
+
+  <select id="getMaxSeq" resultType="java.lang.Integer">
+    SELECT dengmi_seq FROM hallth.dengmi order by dengmi_seq desc limit 1
+  </select>
+</mapper>
