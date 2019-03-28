@@ -10,20 +10,25 @@
 <html>
 <head>
     <title>灯谜</title>
+    <link rel="stylesheet" href="/css/dengmi.css" />
 </head>
 <body>
-    <form name="addDengmiForm" action="/dengmi/addDengmi" method="get">
-        谜面：<input id="mimian" name="mimian"><br/>
-        谜目：<input id="mimu" name="mimu"><br/>
-        谜格：<input id="mige" name="mige"><br/>
-        谜底：<input id="midi" name="midi"><br/>
-        谜注：<input id="mizhu" name="mizhu"><br/>
-        作者：<input id="zuozhe" name="zuozhe"><br/>
-        类型：<input id="leixing" name="leixing"><br/>
-        解释：<input id="jieshi" name="jieshi"><br/>
-        赏析：<input id="shangxi" name="shangxi"><br/>
+<div id="addDengmiDiv">
+    <form name="addDengmiForm" action="/dengmi/addDengmiPage" method="get">
         <button type="submit" value="添加">添加灯谜</button>
     </form>
+</div>
+<div id="queryDengmiDiv">
+    <form name="addDengmiForm" action="/dengmi/queryDengmi" method="get">
+        谜面：<input id="mimianQ" name="mimianQ"><br/>
+        谜目：<input id="mimuQ" name="mimuQ"><br/>
+        谜格：<input id="migeQ" name="migeQ"><br/>
+        谜底：<input id="midiQ" name="midiQ"><br/>
+        作者：<input id="zuozheQ" name="zuozheQ"><br/>
+        类型：<input id="leixingQ" name="leixingQ"><br/>
+        <button type="submit" value="查询">查询</button>
+    </form>
+</div>
 <hr/>
 <c:if test="${!empty addResult}">
     刚刚添加的灯谜信息如下：

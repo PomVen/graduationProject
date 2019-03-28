@@ -30,6 +30,34 @@ public class DengmiController {
         return "dengmi/showDengmi";
     }
 
+    @RequestMapping(value = "/queryDengmi", method = {RequestMethod.GET, RequestMethod.POST})
+    public String queryDengmi(String mimianQ, String mimuQ, String migeQ, String midiQ, String zuozheQ, String leixingQ, Model model){
+        Dengmi dengmi = new Dengmi();
+        if(!mimianQ.trim().isEmpty()){
+            dengmi.setMimian(mimianQ);
+        }
+        if(!mimuQ.trim().isEmpty()){
+            dengmi.setMimu(mimuQ);
+        }
+        if(!midiQ.trim().isEmpty()){
+            dengmi.setMidi(midiQ);
+        }
+        dengmi.setMige(migeQ);
+        dengmi.setZuozhe(zuozheQ);
+        dengmi.setLeixing(leixingQ);
+        List<Dengmi> dengmiList = dengmiService.queryAllDengmi(dengmi);
+        model.addAttribute("dengmiList",dengmiList);
+        if(dengmiList.size() > 0){
+            model.addAttribute("isNull","notnull");
+        }
+        return "dengmi/showDengmi";
+    }
+
+    @RequestMapping(value = "/addDengmiPage", method = {RequestMethod.GET, RequestMethod.POST})
+    public String addDengmiPage(Model model){
+        return "dengmi/addDengmi";
+    }
+
     @RequestMapping(value = "/addDengmi", method = {RequestMethod.GET, RequestMethod.POST})
     public String addDengmi(String mimian, String mimu, String mige, String midi, String zuozhe, String mizhu, String jieshi, String shangxi, String leixing, Model model){
         Dengmi dengmi = new Dengmi();
@@ -46,6 +74,6 @@ public class DengmiController {
             model.addAttribute("addResult", a);
             model.addAttribute("dengmi",dengmi);
         }
-        return "dengmi/showDengmi";
+        return "dengmi/addDengmi";
     }
 }

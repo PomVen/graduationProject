@@ -33,12 +33,12 @@
 <body>
 <canvas></canvas>
 <div class="nav">
-    <div class="font t_c">毕</div>
-    <div class="font t_r">业</div>
-    <div class="font t_e">设</div>
-    <div class="font t_a">计</div>
-    <div class="font t_d">选</div>
-    <div class="font t_t">题</div>
+    <div class="font t_c">寒</div>
+    <div class="font t_r">痕</div>
+    <div class="font t_e">个</div>
+    <div class="font t_a">人</div>
+    <div class="font t_d">练</div>
+    <div class="font t_t">习</div>
 </div>
 <div class="beg-login-box box box-login layui-anim-up" id="login">
     <header>
