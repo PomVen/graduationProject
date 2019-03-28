@@ -30,5 +30,27 @@
 ${dengmi.mimian} | ${dengmi.mimu} | ${dengmi.mige} | ${dengmi.midi} / ${dengmi.zuozhe} <br/>
     【注：${dengmi.mizhu}】
 </c:if>
+
+<c:if test="${!empty isNull}">
+    灯谜结果如下：
+    <table>
+        <tr>
+            <th>谜面</th>
+            <th>谜目</th>
+            <th>谜底</th>
+            <th>作者</th>
+            <th>注</th>
+        </tr>
+        <c:forEach items="${dengmiList}" var="item">
+            <tr>
+                <td>${item.mimian}</td>
+                <td>${item.mimu}${item.mige}</td>
+                <td>${item.midi}</td>
+                <td>${item.zuozhe}</td>
+                <td>${item.mizhu}</td>
+            </tr>
+        </c:forEach>
+    </table>
+</c:if>
 </body>
 </html>

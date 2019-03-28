@@ -6,11 +6,16 @@ import com.hallth.service.DengmiService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class DengmiServiceImpl implements DengmiService {
     @Resource
     private DengmiMapper dengmiMapper;
+
+    public List<Dengmi> queryAllDengmi(Dengmi dengmi){
+        return dengmiMapper.selectDengmi(dengmi);
+    }
 
     public int addDengmi(Dengmi dengmi){
         dengmi.setDengmiSeq(dengmiMapper.getMaxSeq()+1);

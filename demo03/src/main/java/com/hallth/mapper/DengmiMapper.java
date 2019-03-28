@@ -2,6 +2,8 @@ package com.hallth.mapper;
 
 import com.hallth.domain.Dengmi;
 
+import java.util.List;
+
 public interface DengmiMapper {
     int deleteByPrimaryKey(Integer dengmiSeq);
 
@@ -16,4 +18,6 @@ public interface DengmiMapper {
     int updateByPrimaryKey(Dengmi record);
 
     int getMaxSeq();
+
+    List<Dengmi> selectDengmi(Dengmi dengmi);
 }

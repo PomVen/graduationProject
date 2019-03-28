@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 @RequestMapping("/dengmi")
@@ -20,7 +21,12 @@ public class DengmiController {
     private DengmiService dengmiService;
 
     @RequestMapping(value = "/showDengmi", method = {RequestMethod.GET, RequestMethod.POST})
-    public String showDengmi(){
+    public String showDengmi(Model model){
+        List<Dengmi> dengmiList = dengmiService.queryAllDengmi(new Dengmi());
+        model.addAttribute("dengmiList",dengmiList);
+        if(dengmiList.size() > 0){
+            model.addAttribute("isNull","notnull");
+        }
         return "dengmi/showDengmi";
     }
 
