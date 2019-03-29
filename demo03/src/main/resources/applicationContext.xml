@@ -102,7 +102,25 @@
     </bean>
 
     <!--下面是针对Quartz的配置信息，集成Quartz有两种方式，下面的配置包括这两种方式的所有配置，在使用其中一种配置时，需要将另一个配置注释掉-->
-
+    <!-- 配置调度程序quartz ，其中配置JobDetail有两种方式-->
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hallth.utils.SpringQtz"></property>
+        <property name="durability" value="true"></property>
+    </bean>
+    <bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail" />
+        <property name="startDelay" value="3000" />
+        <property name="repeatInterval" value="2000" />
+    </bean>
+    <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->
+    <bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <!-- 管理trigger -->
+        <property name="triggers">
+            <list>
+                <ref bean="simpleTrigger" />
+            </list>
+        </property>
+    </bean>
     <!--Quratz配置结束-->
 
 

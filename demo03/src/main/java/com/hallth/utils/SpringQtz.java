@@ -15,7 +15,7 @@ public class SpringQtz extends QuartzJobBean{
         long ms = System.currentTimeMillis();
         System.out.println("\t\t" + new Date(ms));
         System.out.println(ms);
-        System.out.println("(" + counter++ + ")");
+        System.out.println("==============Quartz Test======  (" + counter++ + ")");
         String s = (String) context.getMergedJobDataMap().get("service");
         System.out.println(s);
         System.out.println();
