@@ -13,11 +13,6 @@
     <link rel="stylesheet" href="/css/dengmi.css" />
 </head>
 <body>
-<div id="addDengmiDiv">
-    <form name="addDengmiForm" action="/dengmi/addDengmiPage" method="get">
-        <button type="submit" value="添加">添加灯谜</button>
-    </form>
-</div>
 <div id="queryDengmiDiv">
     <form name="addDengmiForm" action="/dengmi/queryDengmi" method="get">
         谜面：<input id="mimianQ" name="mimianQ"><br/>
@@ -30,12 +25,6 @@
     </form>
 </div>
 <hr/>
-<c:if test="${!empty addResult}">
-    刚刚添加的灯谜信息如下：
-${dengmi.mimian} | ${dengmi.mimu} | ${dengmi.mige} | ${dengmi.midi} / ${dengmi.zuozhe} <br/>
-    【注：${dengmi.mizhu}】
-</c:if>
-
 <c:if test="${!empty isNull}">
     灯谜结果如下：
     <table>

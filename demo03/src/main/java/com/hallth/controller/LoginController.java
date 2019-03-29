@@ -6,7 +6,6 @@ import com.hallth.service.impl.StudentServiceImpl;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -55,27 +54,6 @@ public class LoginController {
         return "logout";
     }
 
-    @RequestMapping("/teacherIntroduce")
-    public String teacherIntroduce(HttpServletRequest request, HttpServletResponse response, Model model){
-        HttpSession session = request.getSession();
-        UserLoginInfo userLoginInfo = (UserLoginInfo)session.getAttribute("loginUserInfo");
-        String userName = userLoginInfo.getLoginUserName();
-        Student student = new Student();
-        student.setStuName(userName);
-        student = studentService.quetyByUserName(student);
-        String theme = student.getTheme();
-//        Teacher teacher = null;
-//        if(theme == null || theme.isEmpty()){
-//            model.addAttribute("teacherInfo",teacher);
-//        } else {
-//            GraduationTheme graduationTheme = new GraduationTheme();
-//            graduationTheme.setthemeTitle(theme);
-//            teacher = graduationThemeService.getTeacherByTheme(graduationTheme);
-//            model.addAttribute("teacherInfo",teacher);
-//        }
-        return "teacherIntroduce";
-    }
-
     @RequestMapping("/themeChose")
     public String themeChose(HttpServletRequest request, HttpServletResponse response, Model model){
         HttpSession session = request.getSession();
@@ -91,37 +69,6 @@ public class LoginController {
         int role = (int)session.getAttribute("role");
         model.addAttribute("role",role);
         return "themeChose";
-    }
-
-    @RequestMapping("/themeDescription")
-    public String themeDescription(HttpServletRequest request, HttpServletResponse response, Model model){
-        HttpSession session = request.getSession();
-        UserLoginInfo userLoginInfo = (UserLoginInfo)session.getAttribute("loginUserInfo");
-        String userName = userLoginInfo.getLoginUserName();
-        Student student = new Student();
-        student.setStuName(userName);
-        student = studentService.quetyByUserName(student);
-        String theme = student.getTheme();
-        if(null == theme || "".equals(theme)){
-            model.addAttribute("theme",null);
-        } else {
-            GraduationTheme graduationTheme = new GraduationTheme();
-            graduationTheme.setthemeTitle(theme);
-            graduationTheme = graduationThemeService.queryThemeByTitle(graduationTheme);
-//            graduationTheme.setTeacherName(teacherService.selectBySeq(graduationTheme.getthemeTeacher()).getteacherName());
-            model.addAttribute("theme",graduationTheme);
-        }
-        return "themeDescription";
-    }
-
-    @RequestMapping("/fileUpload")
-    public String fileUpload(){
-        return "fileUpload";
-    }
-
-    @RequestMapping("/themeProgress")
-    public String themeProgress(){
-        return "themeProgress";
     }
 
     @RequestMapping("/themeResults")

@@ -30,6 +30,21 @@ public class DengmiController {
         return "dengmi/showDengmi";
     }
 
+    @RequestMapping(value = "/sayDengmi", method = {RequestMethod.GET, RequestMethod.POST})
+    public String sayDengmi(Model model){
+        return "dengmi/sayDengmi";
+    }
+
+    @RequestMapping(value = "/queryMicai", method = {RequestMethod.GET, RequestMethod.POST})
+    public String queryMicai(Model model){
+        return "dengmi/queryMicai";
+    }
+
+    @RequestMapping(value = "/teachDengmi", method = {RequestMethod.GET, RequestMethod.POST})
+    public String teachDengmi(Model model){
+        return "dengmi/teachDengmi";
+    }
+
     @RequestMapping(value = "/queryDengmi", method = {RequestMethod.GET, RequestMethod.POST})
     public String queryDengmi(String mimianQ, String mimuQ, String migeQ, String midiQ, String zuozheQ, String leixingQ, Model model){
         Dengmi dengmi = new Dengmi();

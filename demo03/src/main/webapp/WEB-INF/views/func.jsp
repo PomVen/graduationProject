@@ -30,7 +30,9 @@
         <div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
         <ul id="J_Nav"  class="nav-list ks-clear">
             <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">我的课题</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-product-certified">文件操作</div></li>
             <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">课题选择</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-product">灯谜</div></li>
         </ul>
     </div>
     <ul id="J_NavContent" class="dl-tab-conten">
@@ -44,18 +46,31 @@
 <script>
     BUI.use('common/main',function(){
         var config = [{
-            id:'1',menu:[{
+            id:'1',homePage : "11",menu:[{
                 text:'我的课题',items:[
-                    {id:'2',text:'导师介绍',href:'/login/teacherIntroduce'},
-                    {id:'3',text:'课题介绍',href:'/login/themeDescription'},
-                    {id:'4',text:'课题进度',href:'/login/themeProgress'},
-                    {id:'5',text:'上传文件',href:'/login/fileUpload'},
-                    {id:'6',text:'添加灯谜',href:'/dengmi/showDengmi'}
-        ]}]},{
-            id:'7',homePage : '9',menu:[{
-                text:'课题选择',items:[
-                    {id:'9',text:'课题选择',href:'/login/themeChose'}
+                    {id:'11',text:'导师介绍',href:'/teacher/teacherIntroduce'},
+                    {id:'12',text:'课题介绍',href:'/teacher/themeDescription'},
+                    {id:'13',text:'课题进度',href:'/teacher/themeProgress'}
             ]}]
+        },{
+            id:'2',homePage : '21',menu:[{
+                text:'文件操作',items:[
+                    {id:'21',text:'读取文件',href:'/file/fileHomePage'}
+                ]}]
+        },{
+            id:'3',homePage : '31',menu:[{
+                text:'课题选择',items:[
+                    {id:'31',text:'课题选择',href:'/login/themeChose'}
+            ]}]
+        },{
+            id:'4',homePage : '41',menu:[{
+                text:'灯谜',items:[
+                    {id:'41',text:'灯谜查询',href:'/dengmi/showDengmi'},
+                    {id:'42',text:'新增灯谜',href:'/dengmi/addDengmiPage'},
+                    {id:'43',text:'谜材查询',href:'/dengmi/queryMicai'},
+                    {id:'44',text:'论谜赏谜',href:'/dengmi/sayDengmi'},
+                    {id:'45',text:'灯谜教材',href:'/dengmi/teachDengmi'}
+                ]}]
         }];
         new PageUtil.MainPage({
             modulesConfig : config
