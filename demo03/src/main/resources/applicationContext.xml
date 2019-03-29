@@ -134,8 +134,8 @@
     <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
-                <ref bean="jobTrigger" /><!-- 此处可以配置多个触发器 -->
-                <ref bean="testTrigger" /><!-- 此处可以配置多个触发器 -->
+                <!--<ref bean="jobTrigger" />&lt;!&ndash; 此处可以配置多个触发器 &ndash;&gt;-->
+                <!--<ref bean="testTrigger" />&lt;!&ndash; 此处可以配置多个触发器 &ndash;&gt;-->
             </list>
         </property>
     </bean>

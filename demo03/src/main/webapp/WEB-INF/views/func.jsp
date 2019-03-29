@@ -51,13 +51,11 @@
                     {id:'4',text:'课题进度',href:'/login/themeProgress'},
                     {id:'5',text:'上传文件',href:'/login/fileUpload'},
                     {id:'6',text:'添加灯谜',href:'/dengmi/showDengmi'}
-
-                    // {id:'6',text:'课题成果',href:'/login/themeResults'}
         ]}]},{
-                id:'7',homePage : '9',menu:[{
-                    text:'课题选择',items:[
-                        {id:'9',text:'课题选择',href:'/login/themeChose'}
-                ]}]
+            id:'7',homePage : '9',menu:[{
+                text:'课题选择',items:[
+                    {id:'9',text:'课题选择',href:'/login/themeChose'}
+            ]}]
         }];
         new PageUtil.MainPage({
             modulesConfig : config
