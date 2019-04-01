@@ -4,3 +4,14 @@
 #queryDengmiDiv{
     position: relative;
 }
+.th1{
+    border: 1px solid red;
+    width: 15%;
+}
+#pagination a{
+  border: 1px solid #000000;
+  width: 50px;
+  height:20px;
+  float: left;
+  margin-left: 10px;cursor: pointer;
+}

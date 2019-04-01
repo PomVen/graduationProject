@@ -170,5 +170,39 @@
       </if>
     </where>
     order by dengmi_seq desc
+    <if test="startSeq != null">
+      limit #{startSeq, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+    </if>
+  </select>
+
+  <select id="queryAllDengmiWithoutSeq" resultMap="BaseResultMap">
+    select * from dengmi where dengmi_seq is null
+  </select>
+
+  <update id="updateSeq" parameterType="com.hallth.domain.Dengmi">
+    update dengmi set dengmi_seq=#{dengmiSeq,jdbcType=INTEGER} where mimian = #{mimian, jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteDengmiBySeq">
+    delete from dengmi where dengmi_seq=#{dengmiSeq, jdbcType=INTEGER}
+  </delete>
+
+  <delete id="deleteSeqNull">
+    delete from dengmi where dengmi_seq is null
+  </delete>
+
+  <select id="countDengmi" resultType="java.lang.Integer">
+    select count(*) from dengmi
+    <where>
+      <if test="mimian != null">
+        mimian like '%' #{mimian, jdbcType=VARCHAR} '%'
+      </if>
+      <if test="mimu != null">
+        mimu like '%' #{mimu, jdbcType=VARCHAR} '%'
+      </if>
+      <if test="midi != null">
+        midi like '%' #{midi, jdbcType=VARCHAR} '%'
+      </if>
+    </where>
   </select>
 </mapper>
