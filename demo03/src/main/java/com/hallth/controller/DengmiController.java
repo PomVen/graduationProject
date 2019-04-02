@@ -92,9 +92,9 @@ public class DengmiController {
         model.addAttribute("countRows", count);
         int pageMax = 0;
         if(count%10 > 0){
-            pageMax = (count/10) + 1;
+            pageMax = (count/pageSize) + 1;
         } else {
-            pageMax = count/10;
+            pageMax = count/pageSize;
         }
         model.addAttribute("pageMax", pageMax);
         if(dengmiList.size() > 0){
