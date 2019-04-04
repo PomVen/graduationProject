@@ -17,6 +17,11 @@ public class FileController {
     @Resource
     private ReadTxt readTxt;
 
+    @RequestMapping("/fileHomePage")
+    public String fileHomePage(){
+        return "filesystem/fileUpload";
+    }
+
     @RequestMapping(value = "/fileUpload", method = {RequestMethod.GET, RequestMethod.POST})
     public String login(String uploadFilePath, Model model) {
         //从页面之中提取输入的信息,并且封装好
@@ -31,7 +36,7 @@ public class FileController {
         model.addAttribute("encoding",encoding);
         String fileContent = readTxt.readtxt(uploadFilePath);
         model.addAttribute("fileContent",fileContent);
-        return "fileUpload";
+        return "filesystem/fileUpload";
     }
 
     public String getFileType(String fileTypeCode){

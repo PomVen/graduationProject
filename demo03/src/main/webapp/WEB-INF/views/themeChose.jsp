@@ -16,7 +16,6 @@ To change this template use File | Settings | File Templates.
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/bootstrap-table.js"></script>
     <script src="/js/bootstrap-table-zh-CN.js"></script>
-
 </head>
 <div style="width: 90%; height: 30%">
     <!-- role: 0-管理员；1-导师；2-学生 -->
@@ -124,8 +123,8 @@ To change this template use File | Settings | File Templates.
             }
         ];
         a('/login/queryTheme',columns);
-
     });
+
     function a (dataurl,columns) {
         $('#userListTable').bootstrapTable({
             url: dataurl,

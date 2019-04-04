@@ -24,11 +24,23 @@
     赏析：<textarea id="shangxi" name="shangxi"></textarea><br/>
     <button type="submit" value="添加">添加灯谜</button>
 </form>
+<form name="addSeq" value="批量添加" action="/dengmi/addDengmis" method="get">
+    <button type="submit" value="添加">添加灯谜Seq</button>
+</form>
+<form name="delete" value="删除重复" action="/dengmi/deleteSeqNull" method="get">
+    <button type="submit" value="添加">删除重复</button>
+</form>
 <hr/>
 <c:if test="${!empty addResult}">
     刚刚添加的灯谜信息如下：
-    ${dengmi.mimian} | ${dengmi.mimu} | ${dengmi.mige} | ${dengmi.midi} / ${dengmi.zuozhe} <br/>
-    【注：${dengmi.mizhu}】
+    ${dengmi.mimian} ( ${dengmi.mimu}
+    <c:if test="${!empty dengmi.mige}">
+        ; ${dengmi.mige}
+    </c:if>
+    )  ${dengmi.midi} / ${dengmi.zuozhe} <br/>
+    <c:if test="${!empty dengmi.mizhu}">
+        【注：${dengmi.mizhu}】
+    </c:if>
 </c:if>
 </body>
 </html>

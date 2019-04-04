@@ -1,16 +1,13 @@
 package com.hallth.utils;
 
 
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
-import org.springframework.scheduling.quartz.QuartzJobBean;
+import org.springframework.stereotype.Service;
 
-import java.util.Date;
-
+@Service
 public class SpringQtz2 {
     private static int counter = 0;
     public void doSomething() {
-        System.err.println("****:" + System.currentTimeMillis());
+        System.err.println("============= Message from SpringQuartz2 =============\n" + System.currentTimeMillis());
     }
 
 }

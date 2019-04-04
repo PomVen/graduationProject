@@ -3,9 +3,11 @@ package com.hallth.utils;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+@Service
 public class SpringQtz extends QuartzJobBean{
     private static int counter = 0;
 
@@ -13,12 +15,8 @@ public class SpringQtz extends QuartzJobBean{
     protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
         System.out.println();
         long ms = System.currentTimeMillis();
-        System.out.println("\t\t" + new Date(ms));
+        System.out.println("============= Message from SpringQuartz =============\n(" + counter++ + ")");
         System.out.println(ms);
-        System.out.println("(" + counter++ + ")");
-        String s = (String) context.getMergedJobDataMap().get("service");
-        System.out.println(s);
-        System.out.println();
     }
 
 }

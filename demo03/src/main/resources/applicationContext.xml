@@ -102,7 +102,43 @@
     </bean>
 
     <!--下面是针对Quartz的配置信息，集成Quartz有两种方式，下面的配置包括这两种方式的所有配置，在使用其中一种配置时，需要将另一个配置注释掉-->
+    <!-- 指定类和方法的方式1-->
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hallth.utils.SpringQtz"></property>
+        <property name="durability" value="true"></property>
+    </bean>
 
+    <!-- 指定类和方法的方式2-->
+    <bean id="testJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="springQtz2"></property>
+        <!-- 任务类中需要执行的方法 -->
+        <property name="targetMethod" value="doSomething"></property>
+        <!-- 上一次未执行完成的，要等待有再执行。 -->
+        <property name="concurrent" value="false"></property>
+    </bean>
+
+    <!--配置触发器的方法1-->
+    <bean id="testTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail"></property>
+        <property name="startDelay" value="3000"></property>
+        <property name="repeatInterval" value="10000"></property>
+    </bean>
+
+    <!--配置触发器的方法2-->
+    <bean id="jobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="testJob" />
+        <property name="cronExpression" value="0/10 * * * * ?" /><!-- 每隔10秒钟触发一次 -->
+    </bean>
+
+    <!--触发配置任务-->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <!--<ref bean="jobTrigger" />&lt;!&ndash; 此处可以配置多个触发器 &ndash;&gt;-->
+                <!--<ref bean="testTrigger" />&lt;!&ndash; 此处可以配置多个触发器 &ndash;&gt;-->
+            </list>
+        </property>
+    </bean>
     <!--Quratz配置结束-->
 
 

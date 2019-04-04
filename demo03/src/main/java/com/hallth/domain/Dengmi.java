@@ -21,6 +21,28 @@ public class Dengmi {
 
     private String leixing;
 
+    //非数据库字段
+    private int startSeq;
+    private int pageSize;
+
+    public int getStartSeq() {
+        return startSeq;
+    }
+
+    public void setStartSeq(int startSeq) {
+        this.startSeq = startSeq;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+
+
     public Integer getDengmiSeq() {
         return dengmiSeq;
     }
