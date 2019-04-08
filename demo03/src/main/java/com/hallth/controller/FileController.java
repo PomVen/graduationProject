@@ -1,6 +1,6 @@
 package com.hallth.controller;
 
-import com.hallth.utils.ReadTxt;
+import com.hallth.utils.TxtUtil;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,7 @@ public class FileController {
     private static Logger logger = Logger.getLogger(LoginController.class.getName());
 
     @Resource
-    private ReadTxt readTxt;
+    private TxtUtil txtUtil;
 
     @RequestMapping("/fileHomePage")
     public String fileHomePage(){
@@ -34,7 +34,7 @@ public class FileController {
         model.addAttribute("fileType", fileType);
         String encoding = System.getProperty("file.encoding");
         model.addAttribute("encoding",encoding);
-        String fileContent = readTxt.readtxt(uploadFilePath);
+        String fileContent = txtUtil.readtxt(uploadFilePath);
         model.addAttribute("fileContent",fileContent);
         return "filesystem/fileUpload";
     }

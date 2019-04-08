@@ -24,12 +24,12 @@
     赏析：<textarea id="shangxi" name="shangxi"></textarea><br/>
     <button type="submit" value="添加">添加灯谜</button>
 </form>
-<form name="addSeq" value="批量添加" action="/dengmi/addDengmis" method="get">
-    <button type="submit" value="添加">添加灯谜Seq</button>
-</form>
-<form name="delete" value="删除重复" action="/dengmi/deleteSeqNull" method="get">
-    <button type="submit" value="添加">删除重复</button>
-</form>
+<a href="javascript:window.location.href='/dengmi/addDengmiSeq'">补全灯谜SEQ</a>
+<a href="javascript:window.location.href='/dengmi/deleteSeqNull'">删除SEQ为空的灯谜</a>
+<a href="javascript:openNewWin('/dengmi/mulAddDengmi');">txt批量添加</a>
+<a href="javascript:openNewWin('/dengmi/mulAddDengmi');">excel批量添加</a><br/>
+TXT格式要求：谜面 谜目[+谜格] 谜底 作者
+EXCEL格式要求：谜面 谜目[+谜格] 谜底 作者，支持03和07版本，不要有表头
 <hr/>
 <c:if test="${!empty addResult}">
     刚刚添加的灯谜信息如下：
@@ -43,4 +43,7 @@
     </c:if>
 </c:if>
 </body>
+<script src="/js/hallth/hallth.js"></script>
 </html>
+<script type="text/javascript">
+</script>

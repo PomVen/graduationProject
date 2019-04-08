@@ -37,10 +37,10 @@
         <a href="javascript:fanye(1)">首页</a>
         <a href="javascript:fanye(${pageNum - 1})">上一页</a>
     </c:if>
-    <c:if test="${pageNum - 1 > 2}">
+    <c:if test="${pageNum > 3 && pageMax > 5}">
         &nbsp;&nbsp;...&nbsp;&nbsp;
     </c:if>
-    <c:if test="${pageNum  > 2}">
+    <c:if test="${pageNum > 2}">
         <a href="javascript:fanye(${pageNum - 2})">${pageNum - 2}</a>
     </c:if>
     <c:if test="${pageNum > 1}">
@@ -53,7 +53,7 @@
     <c:if test="${(pageNum + 1) < pageMax}">
         <a href="javascript:fanye(${pageNum + 2})">${pageNum + 2}</a>
     </c:if>
-    <c:if test="${(pageMax - pageNum) > 2}">
+    <c:if test="${(pageMax - pageNum) > 2 && pageMax > 5}">
         &nbsp;&nbsp;...&nbsp;&nbsp;
     </c:if>
     <c:if test="${pageNum < pageMax}">

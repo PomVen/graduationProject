@@ -4,6 +4,8 @@ package com.hallth.controller;
 import com.github.pagehelper.Page;
 import com.hallth.domain.Dengmi;
 import com.hallth.service.DengmiService;
+import com.hallth.utils.ExcelUtil;
+import com.hallth.utils.TxtUtil;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +28,10 @@ public class DengmiController {
 
     @Resource
     private DengmiService dengmiService;
+    @Resource
+    private TxtUtil txtUtil;
+    @Resource
+    private ExcelUtil excelUtil;
 
     @RequestMapping(value = "/showDengmi", method = {RequestMethod.GET, RequestMethod.POST})
     public String showDengmi(Model model){
@@ -75,9 +82,15 @@ public class DengmiController {
         if(!midiQ.trim().isEmpty()){
             dengmi.setMidi(midiQ);
         }
-        dengmi.setMige(migeQ);
-        dengmi.setZuozhe(zuozheQ);
-        dengmi.setLeixing(leixingQ);
+        if(!zuozheQ.trim().isEmpty()){
+            dengmi.setZuozhe(zuozheQ);
+        }
+        if(!migeQ.trim().isEmpty()){
+            dengmi.setMidi(migeQ);
+        }
+        if(!leixingQ.trim().isEmpty()){
+            dengmi.setMidi(leixingQ);
+        }
 
         model.addAttribute("mimianQ", mimianQ);
         model.addAttribute("mimuQ", mimuQ);
@@ -104,11 +117,6 @@ public class DengmiController {
         }
         model.addAttribute("pageSize", pageSize);
         model.addAttribute("pageNum", pageNum);
-//        Map map = new HashMap();
-//        map.put("total", dengmiList.getTotal());
-//        map.put("rows",dengmiList.getResult());
-//        model.addAttribute("pageNum",pageNum);
-//        model.addAttribute("pageSize",pageSize);
         return "dengmi/showDengmi";
     }
 
@@ -144,8 +152,77 @@ public class DengmiController {
         return "dengmi/addDengmi";
     }
 
-    @RequestMapping(value = "/addDengmis")
-    public String addDengmis(Model model){
+    @RequestMapping(value = "/mulAddDengmi", method={RequestMethod.GET})
+    public String mulAddDengmi(Model model){
+        return "dengmi/addDengmis";
+    }
+
+    @RequestMapping(value = "/addDengmis", method = {RequestMethod.GET})
+    public void addDengmis(String mulAddFile, Model model){
+        List<Dengmi> insertList = new ArrayList<>();
+        if(mulAddFile.endsWith("txt")){
+            insertList = addDengmiByTxt(mulAddFile);
+        } else if(mulAddFile.endsWith("xls") || mulAddFile.endsWith("xlsx")){
+            insertList = addDengmiByExcel(mulAddFile);
+        }
+        int insertResult = 0;
+        if(insertList.size() > 0){
+            insertResult = dengmiService.insertList(insertList);
+        }
+        if(insertResult > 0){
+            model.addAttribute("result","批量添加成功！");
+        } else {
+            model.addAttribute("result", "批量添加失败！");
+        }
+    }
+    public List<Dengmi> addDengmiByTxt(String mulAddFile){
+        String txtContent = txtUtil.readtxt(mulAddFile);
+        String[] lines = txtContent.split("\n");
+        List<Dengmi> insertList = new ArrayList<Dengmi>();
+        int i = 0;
+        for(String lineData : lines){
+            Dengmi dengmi = getInsertList(lineData, i);
+            i++;
+            insertList.add(dengmi);
+        }
+        return insertList;
+    }
+
+    public List<Dengmi> addDengmiByExcel(String filePath){
+        List<Dengmi> insertList = new ArrayList<>();
+        List<List<StringBuffer>> excelDatas = excelUtil.readExcelFile(filePath);
+        for(List<StringBuffer> sheetDatas : excelDatas){
+            for(int i = 0; i < sheetDatas.size(); i++){
+                StringBuffer rowData=sheetDatas.get(i);
+                Dengmi dengmi = getInsertList(rowData.toString(),i);
+                insertList.add(dengmi);
+            }
+        }
+        return insertList;
+    }
+
+    public Dengmi getInsertList(String lineData,int i){
+        String[] dengmiMsg = lineData.split("\t");
+        int dengmiSeq = dengmiService.getMaxSeq() + 1 + i;
+        String mimian = dengmiMsg[0];
+        String mimumige = dengmiMsg[1];
+
+        String midi = dengmiMsg[2];
+        String zuozhe = "佚名";
+        if(dengmiMsg.length > 3){
+            zuozhe = dengmiMsg[3];
+        }
+        Dengmi dengmi = new Dengmi();
+        dengmi.setDengmiSeq(dengmiSeq);
+        dengmi.setMimian(mimian);
+        dengmi.setMimu(mimumige);
+        dengmi.setMidi(midi);
+        dengmi.setZuozhe(zuozhe);
+        return dengmi;
+    }
+
+    @RequestMapping(value = "/addDengmiSeq")
+    public String addDengmiSeq(Model model){
         int a = dengmiService.getMaxSeq();
         List<Dengmi> dList = dengmiService.queryAllDengmiWithoutSeq();
         for(Dengmi dengmi : dList){
@@ -153,14 +230,15 @@ public class DengmiController {
             dengmi.setDengmiSeq(a);
             dengmiService.updateSeq(dengmi);
         }
-        model.addAttribute("result", "success");
+        model.addAttribute("result", "add SEQ success");
         return "dengmi/addDengmis";
     }
 
     @RequestMapping(value = "/deleteSeqNull", method = {RequestMethod.GET, RequestMethod.POST})
-    public String deleteSeqNull(){
+    public String deleteSeqNull(Model model){
         dengmiService.deleteSeqNull();
-        return "dengmi/addDengmi";
+        model.addAttribute("result","delete null SEQ success");
+        return "dengmi/addDengmis";
     }
 
     @RequestMapping(value = "/deleteChoesed/{dengmiSeq}", method = {RequestMethod.GET, RequestMethod.POST})

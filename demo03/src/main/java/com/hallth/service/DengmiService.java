@@ -24,4 +24,6 @@ public interface DengmiService {
     int updateSeq(Dengmi dengmi);
 
     int deleteDengmiBySeq(Dengmi dengmi);
+
+    int insertList(List<Dengmi> insertList);
 }

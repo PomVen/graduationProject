@@ -60,4 +60,8 @@ public class DengmiServiceImpl implements DengmiService {
     public int deleteDengmiBySeq(Dengmi dengmi){
         return dengmiMapper.deleteDengmiBySeq(dengmi);
     }
+
+    public int insertList(List<Dengmi> insertList){
+        return dengmiMapper.insertList(insertList);
+    }
 }

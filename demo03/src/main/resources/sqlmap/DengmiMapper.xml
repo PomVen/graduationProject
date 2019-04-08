@@ -165,8 +165,17 @@
       <if test="mimu != null">
         mimu like '%' #{mimu, jdbcType=VARCHAR} '%'
       </if>
+      <if test="mige != null">
+        mige like '%' #{mige, jdbcType=VARCHAR} '%'
+      </if>
       <if test="midi != null">
         midi like '%' #{midi, jdbcType=VARCHAR} '%'
+      </if>
+      <if test="zuozhe != null">
+        zuozhe like '%' #{zuozhe, jdbcType=VARCHAR} '%'
+      </if>
+      <if test="leixing != null">
+        leixing like '%' #{leixing, jdbcType=VARCHAR} '%'
       </if>
     </where>
     order by dengmi_seq desc
@@ -200,9 +209,30 @@
       <if test="mimu != null">
         mimu like '%' #{mimu, jdbcType=VARCHAR} '%'
       </if>
+      <if test="mige != null">
+        mige like '%' #{mige, jdbcType=VARCHAR} '%'
+      </if>
       <if test="midi != null">
         midi like '%' #{midi, jdbcType=VARCHAR} '%'
       </if>
+      <if test="zuozhe != null">
+        zuozhe like '%' #{zuozhe, jdbcType=VARCHAR} '%'
+      </if>
+      <if test="leixing != null">
+        leixing like '%' #{leixing, jdbcType=VARCHAR} '%'
+      </if>
     </where>
   </select>
+
+  <insert id="insertList" parameterType="java.util.List">
+    insert into dengmi (dengmi_seq, mimian, mimu,
+      mige, midi, mizhu, zuozhe, jieshi, shangxi, leixing)
+      values 
+      <foreach collection="list" index="index" item="item" separator=",">
+        (#{item.dengmiSeq,jdbcType=INTEGER}, #{item.mimian,jdbcType=VARCHAR}, #{item.mimu,jdbcType=VARCHAR},
+        #{item.mige,jdbcType=VARCHAR}, #{item.midi,jdbcType=VARCHAR}, #{item.mizhu,jdbcType=VARCHAR},
+        #{item.zuozhe,jdbcType=VARCHAR}, #{item.jieshi,jdbcType=VARCHAR}, #{item.shangxi,jdbcType=VARCHAR},
+        #{item.leixing,jdbcType=VARCHAR})
+      </foreach>
+  </insert>
 </mapper>

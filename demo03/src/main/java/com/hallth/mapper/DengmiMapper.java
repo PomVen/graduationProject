@@ -33,4 +33,6 @@ public interface DengmiMapper {
     int deleteSeqNull();
 
     int countDengmi(Dengmi dengmi);
+
+    int insertList(List<Dengmi> insertList);
 }
