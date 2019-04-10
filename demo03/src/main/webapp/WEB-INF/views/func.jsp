@@ -33,6 +33,7 @@
             <li class="nav-item dl-selected"><div class="nav-item-inner nav-product-certified">文件操作</div></li>
             <li class="nav-item dl-selected"><div class="nav-item-inner nav-order">课题选择</div></li>
             <li class="nav-item dl-selected"><div class="nav-item-inner nav-product">灯谜</div></li>
+            <li class="nav-item dl-selected"><div class="nav-item-inner nav-product">汉字</div></li>
         </ul>
     </div>
     <ul id="J_NavContent" class="dl-tab-conten">
@@ -70,6 +71,14 @@
                     {id:'43',text:'谜材查询',href:'/dengmi/queryMicai'},
                     {id:'44',text:'论谜赏谜',href:'/dengmi/sayDengmi'},
                     {id:'45',text:'灯谜教材',href:'/dengmi/teachDengmi'}
+                ]}]
+        },{
+            id:'5',homePage : '51',menu:[{
+                text:'汉字',items:[
+                    {id:'51',text:'汉字基本查询',href:'/zidian/queryPage'},
+                    {id:'52',text:'汉字笔画查询',href:'/hanzi/bihuaQuery'},
+                    {id:'53',text:'汉字义项查询',href:'/hanzi/yixiangQuery'},
+                    {id:'54',text:'汉字词组查询',href:'/hanzi/cizuQuery'}
                 ]}]
         }];
         new PageUtil.MainPage({

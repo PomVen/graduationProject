@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hallth.mapper.HanziMapper" >
+  <resultMap id="BaseResultMap" type="com.hallth.domain.Hanzi" >
+    <result column="hanzi" property="hanzi" jdbcType="VARCHAR" />
+    <result column="shengmu" property="shengmu" jdbcType="VARCHAR" />
+    <result column="yunmu" property="yunmu" jdbcType="VARCHAR" />
+    <result column="shengdiao" property="shengdiao" jdbcType="INTEGER" />
+    <result column="ziyi" property="ziyi" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.hallth.domain.Hanzi" >
+    insert into hanzi (hanzi, shengmu, yunmu, 
+      shengdiao, ziyi)
+    values (#{hanzi,jdbcType=VARCHAR}, #{shengmu,jdbcType=VARCHAR}, #{yunmu,jdbcType=VARCHAR}, 
+      #{shengdiao,jdbcType=INTEGER}, #{ziyi,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hallth.domain.Hanzi" >
+    insert into hanzi
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hanzi != null" >
+        hanzi,
+      </if>
+      <if test="shengmu != null" >
+        shengmu,
+      </if>
+      <if test="yunmu != null" >
+        yunmu,
+      </if>
+      <if test="shengdiao != null" >
+        shengdiao,
+      </if>
+      <if test="ziyi != null" >
+        ziyi,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hanzi != null" >
+        #{hanzi,jdbcType=VARCHAR},
+      </if>
+      <if test="shengmu != null" >
+        #{shengmu,jdbcType=VARCHAR},
+      </if>
+      <if test="yunmu != null" >
+        #{yunmu,jdbcType=VARCHAR},
+      </if>
+      <if test="shengdiao != null" >
+        #{shengdiao,jdbcType=INTEGER},
+      </if>
+      <if test="ziyi != null" >
+        #{ziyi,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectHanzi" resultMap="BaseResultMap">
+    select * from hanzi
+    <where>
+      1 = 1
+      <if test="hanzi != null">
+        hanzi = #{hanzi, jdbcType=VARCHAR}
+      </if>
+      <if test="shengmu != null">
+        shengmu = #{shengmu, jdbcType=VARCHAR}
+      </if>
+      <if test="yunmu != null">
+        yunmu = #{yunmu, jdbcType=VARCHAR}
+      </if>
+      <if test="shengdiao != null">
+        shengdiao = #{shengdiao, jdbcType=INTEGER}
+      </if>
+      <if test="ziyi != null">
+        ziyi = #{ziyi, jdbcType=VARCHAR}
+      </if>
+      order by shengmu,yunmu,shengdiao
+    </where>
+  </select>
+</mapper>

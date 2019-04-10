@@ -25,10 +25,10 @@
     <button type="submit" value="添加">添加灯谜</button>
 </form>
 <a href="javascript:window.location.href='/dengmi/addDengmiSeq'">补全灯谜SEQ</a>
-<a href="javascript:window.location.href='/dengmi/deleteSeqNull'">删除SEQ为空的灯谜</a>
-<a href="javascript:openNewWin('/dengmi/mulAddDengmi');">txt批量添加</a>
+<a href="javascript:window.location.href='/dengmi/deleteSeqNull'">删除SEQ为空的灯谜</a><br/>
+<a href="javascript:openNewWin('/dengmi/mulAddDengmi');">txt批量添加</a><br/>
 <a href="javascript:openNewWin('/dengmi/mulAddDengmi');">excel批量添加</a><br/>
-TXT格式要求：谜面 谜目[+谜格] 谜底 作者
+TXT格式要求：谜面 谜目[+谜格] 谜底 作者<br/>
 EXCEL格式要求：谜面 谜目[+谜格] 谜底 作者，支持03和07版本，不要有表头
 <hr/>
 <c:if test="${!empty addResult}">

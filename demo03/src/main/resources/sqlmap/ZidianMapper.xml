@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hallth.mapper.ZidianMapper" >
+  <resultMap id="BaseResultMap" type="com.hallth.domain.Zidian" >
+    <id column="id" property="id" jdbcType="REAL" />
+    <result column="zi" property="zi" jdbcType="VARCHAR" />
+    <result column="py" property="py" jdbcType="VARCHAR" />
+    <result column="wubi" property="wubi" jdbcType="VARCHAR" />
+    <result column="bushou" property="bushou" jdbcType="VARCHAR" />
+    <result column="bihua" property="bihua" jdbcType="REAL" />
+    <result column="pinyin" property="pinyin" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hallth.domain.ZidianWithBLOBs" extends="BaseResultMap" >
+    <result column="jijie" property="jijie" jdbcType="LONGVARCHAR" />
+    <result column="xiangjie" property="xiangjie" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, zi, py, wubi, bushou, bihua, pinyin
+  </sql>
+  <sql id="Blob_Column_List" >
+    jijie, xiangjie
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Float" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from zidian
+    where id = #{id,jdbcType=REAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Float" >
+    delete from zidian
+    where id = #{id,jdbcType=REAL}
+  </delete>
+  <insert id="insert" parameterType="com.hallth.domain.ZidianWithBLOBs" >
+    insert into zidian (id, zi, py, wubi, 
+      bushou, bihua, pinyin, 
+      jijie, xiangjie)
+    values (#{id,jdbcType=REAL}, #{zi,jdbcType=VARCHAR}, #{py,jdbcType=VARCHAR}, #{wubi,jdbcType=VARCHAR}, 
+      #{bushou,jdbcType=VARCHAR}, #{bihua,jdbcType=REAL}, #{pinyin,jdbcType=VARCHAR}, 
+      #{jijie,jdbcType=LONGVARCHAR}, #{xiangjie,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hallth.domain.ZidianWithBLOBs" >
+    insert into zidian
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="zi != null" >
+        zi,
+      </if>
+      <if test="py != null" >
+        py,
+      </if>
+      <if test="wubi != null" >
+        wubi,
+      </if>
+      <if test="bushou != null" >
+        bushou,
+      </if>
+      <if test="bihua != null" >
+        bihua,
+      </if>
+      <if test="pinyin != null" >
+        pinyin,
+      </if>
+      <if test="jijie != null" >
+        jijie,
+      </if>
+      <if test="xiangjie != null" >
+        xiangjie,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=REAL},
+      </if>
+      <if test="zi != null" >
+        #{zi,jdbcType=VARCHAR},
+      </if>
+      <if test="py != null" >
+        #{py,jdbcType=VARCHAR},
+      </if>
+      <if test="wubi != null" >
+        #{wubi,jdbcType=VARCHAR},
+      </if>
+      <if test="bushou != null" >
+        #{bushou,jdbcType=VARCHAR},
+      </if>
+      <if test="bihua != null" >
+        #{bihua,jdbcType=REAL},
+      </if>
+      <if test="pinyin != null" >
+        #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="jijie != null" >
+        #{jijie,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="xiangjie != null" >
+        #{xiangjie,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hallth.domain.ZidianWithBLOBs" >
+    update zidian
+    <set >
+      <if test="zi != null" >
+        zi = #{zi,jdbcType=VARCHAR},
+      </if>
+      <if test="py != null" >
+        py = #{py,jdbcType=VARCHAR},
+      </if>
+      <if test="wubi != null" >
+        wubi = #{wubi,jdbcType=VARCHAR},
+      </if>
+      <if test="bushou != null" >
+        bushou = #{bushou,jdbcType=VARCHAR},
+      </if>
+      <if test="bihua != null" >
+        bihua = #{bihua,jdbcType=REAL},
+      </if>
+      <if test="pinyin != null" >
+        pinyin = #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="jijie != null" >
+        jijie = #{jijie,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="xiangjie != null" >
+        xiangjie = #{xiangjie,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=REAL}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hallth.domain.ZidianWithBLOBs" >
+    update zidian
+    set zi = #{zi,jdbcType=VARCHAR},
+      py = #{py,jdbcType=VARCHAR},
+      wubi = #{wubi,jdbcType=VARCHAR},
+      bushou = #{bushou,jdbcType=VARCHAR},
+      bihua = #{bihua,jdbcType=REAL},
+      pinyin = #{pinyin,jdbcType=VARCHAR},
+      jijie = #{jijie,jdbcType=LONGVARCHAR},
+      xiangjie = #{xiangjie,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=REAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hallth.domain.Zidian" >
+    update zidian
+    set zi = #{zi,jdbcType=VARCHAR},
+      py = #{py,jdbcType=VARCHAR},
+      wubi = #{wubi,jdbcType=VARCHAR},
+      bushou = #{bushou,jdbcType=VARCHAR},
+      bihua = #{bihua,jdbcType=REAL},
+      pinyin = #{pinyin,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=REAL}
+  </update>
+
+  <select id="selectZi" resultMap="ResultMapWithBLOBs" parameterType="com.hallth.domain.ZidianWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from zidian
+    <where>
+      1=1
+      <if test="zi != null" >
+        zi = #{zi,jdbcType=VARCHAR}
+      </if>
+      <if test="py != null" >
+        py = #{py,jdbcType=VARCHAR}
+      </if>
+      <if test="wubi != null" >
+        wubi = #{wubi,jdbcType=VARCHAR}
+      </if>
+      <if test="bushou != null" >
+        bushou = #{bushou,jdbcType=VARCHAR}
+      </if>
+      <if test="bihua != null" >
+        bihua = #{bihua,jdbcType=REAL}
+      </if>
+      <if test="pinyin != null" >
+        pinyin = #{pinyin,jdbcType=VARCHAR}
+      </if>
+      <if test="jijie != null" >
+        jijie = #{jijie,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="xiangjie != null" >
+        xiangjie = #{xiangjie,jdbcType=LONGVARCHAR}
+      </if>
+    </where>
+    order by pinyin
+    limit 1, 20
+  </select>
+</mapper>
