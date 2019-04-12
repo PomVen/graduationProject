@@ -7,12 +7,13 @@
     <result column="yunmu" property="yunmu" jdbcType="VARCHAR" />
     <result column="shengdiao" property="shengdiao" jdbcType="INTEGER" />
     <result column="ziyi" property="ziyi" jdbcType="VARCHAR" />
+    <result column="bihuashu" property="bihuashu" jdbcType="INTEGER" />
   </resultMap>
   <insert id="insert" parameterType="com.hallth.domain.Hanzi" >
     insert into hanzi (hanzi, shengmu, yunmu, 
-      shengdiao, ziyi)
+      shengdiao, ziyi, bihuashu)
     values (#{hanzi,jdbcType=VARCHAR}, #{shengmu,jdbcType=VARCHAR}, #{yunmu,jdbcType=VARCHAR}, 
-      #{shengdiao,jdbcType=INTEGER}, #{ziyi,jdbcType=VARCHAR})
+      #{shengdiao,jdbcType=INTEGER}, #{ziyi,jdbcType=VARCHAR}, #{bihuashu, jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.hallth.domain.Hanzi" >
     insert into hanzi
@@ -32,6 +33,9 @@
       <if test="ziyi != null" >
         ziyi,
       </if>
+      <if test="bihuashu != null">
+        bihuashu,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="hanzi != null" >
@@ -48,6 +52,9 @@
       </if>
       <if test="ziyi != null" >
         #{ziyi,jdbcType=VARCHAR},
+      </if>
+      <if test="bihuashu != null">
+        #{bihuashu, jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -71,7 +78,29 @@
       <if test="ziyi != null">
         ziyi = #{ziyi, jdbcType=VARCHAR}
       </if>
+      <if test="bihuashu != null">
+        bihuashu = #{bihuashu, jdbcType=INTEGER}
+      </if>
       order by shengmu,yunmu,shengdiao
     </where>
   </select>
+
+  <insert id="insertList" parameterType="java.util.List">
+    insert into hanzi
+    (hanzi,
+        shengmu,
+        yunmu,
+        shengdiao,
+        ziyi,
+        bihuashu)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{hanzi,jdbcType=VARCHAR},
+          #{shengmu,jdbcType=VARCHAR},
+          #{yunmu,jdbcType=VARCHAR},
+          #{shengdiao,jdbcType=INTEGER},
+          #{ziyi,jdbcType=VARCHAR},
+          #{bihuashu, jdbcType=INTEGER})
+    </foreach>
+  </insert>
 </mapper>

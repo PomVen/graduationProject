@@ -23,10 +23,10 @@
         </tr>
         <c:forEach items="${zidianList}" var="item">
             <tr>
-                <td class="th1">${item.hanzi}</td>
-                <td class="th1">${item.shengmu}${item.yunmu}${item.shengdiao}</td>
-                <td class="th1">${item.ziyi}</td>
-                <td class="th1"><a href="/hanzi/modifyHanzi/${item.hanzi}">修改</a></td>
+                <td class="th1">${item.zi}</td>
+                <td class="th1">${item.pinyin}</td>
+                <td class="th1">${item.jijie}</td>
+                <td class="th1"><a href="/hanzi/modifyHanzi/${item.id}">修改</a></td>
             </tr>
         </c:forEach>
     </table>

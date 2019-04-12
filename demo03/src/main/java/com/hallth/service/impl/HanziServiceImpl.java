@@ -17,4 +17,8 @@ public class HanziServiceImpl implements HanziService {
     public List<Hanzi> selectHanzi(Hanzi hanzi){
         return hanziMapper.selectHanzi(hanzi);
     }
+
+    public int insertList(List<Hanzi> hanziList){
+        return hanziMapper.insertList(hanziList);
+    }
 }

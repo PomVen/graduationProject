@@ -75,10 +75,18 @@
         },{
             id:'5',homePage : '51',menu:[{
                 text:'汉字',items:[
-                    {id:'51',text:'汉字基本查询',href:'/zidian/queryPage'},
+                    {id:'51',text:'汉字基本查询',href:'/hanzi/hanziQuery'},
                     {id:'52',text:'汉字笔画查询',href:'/hanzi/bihuaQuery'},
                     {id:'53',text:'汉字义项查询',href:'/hanzi/yixiangQuery'},
                     {id:'54',text:'汉字词组查询',href:'/hanzi/cizuQuery'}
+                ]}]
+        },{
+            id:'6',homePage : '61',menu:[{
+                text:'汉字',items:[
+                    {id:'61',text:'新华字典',href:'/zidian/queryPage'},
+                    {id:'62',text:'汉字笔画查询',href:'/zidian/queryPage'},
+                    {id:'63',text:'汉字义项查询',href:'/zidian/queryPage'},
+                    {id:'64',text:'汉字词组查询',href:'/zidian/queryPage'}
                 ]}]
         }];
         new PageUtil.MainPage({

@@ -7,4 +7,6 @@ import java.util.List;
 public interface HanziService {
 
     List<Hanzi> selectHanzi(Hanzi hanzi);
+
+    int insertList(List<Hanzi> hanziList);
 }

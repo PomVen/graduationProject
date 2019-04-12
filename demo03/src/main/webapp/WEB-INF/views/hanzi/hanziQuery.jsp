@@ -29,14 +29,6 @@
                 <td class="th1"><a href="/hanzi/modifyHanzi/${item.hanzi}">修改</a></td>
             </tr>
         </c:forEach>
-        <c:forEach items="${zidianList}" var="item">
-            <tr>
-                <td class="th1">${item.zi}</td>
-                <td class="th1">${item.pinyin}</td>
-                <td class="th1">${item.jijie}</td>
-                <td class="th1"><a href="/hanzi/modifyHanzi/${item.id}">修改</a></td>
-            </tr>
-        </c:forEach>
     </table>
 </c:if>
 </body>

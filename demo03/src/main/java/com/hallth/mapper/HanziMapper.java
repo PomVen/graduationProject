@@ -10,4 +10,6 @@ public interface HanziMapper {
     int insertSelective(Hanzi record);
 
     List<Hanzi> selectHanzi(Hanzi hanzi);
+
+    int insertList(List<Hanzi> hanziList);
 }

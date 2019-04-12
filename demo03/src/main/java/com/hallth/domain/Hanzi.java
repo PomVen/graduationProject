@@ -11,6 +11,16 @@ public class Hanzi {
 
     private String ziyi;
 
+    private Integer bihuashu;
+
+    public Integer getBihuashu(){
+        return  bihuashu;
+    }
+
+    public void setBihuashu(Integer bihuashu){
+        this.bihuashu = bihuashu;
+    }
+
     public String getHanzi() {
         return hanzi;
     }
