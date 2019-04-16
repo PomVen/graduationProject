@@ -60,7 +60,7 @@
         <a href="javascript:fanye(${pageNum + 1})">下一页</a>
         <a href="javascript:fanye(${pageMax})">尾页</a>
     </c:if>
-    跳到第<input style="width: 3%;" onblur="operations()" id="tiaozhuan"/>页
+    跳到第<input style="width: 3%;" onblur="turnToPage()" id="tiaozhuan"/>页
 </c:if>
 <c:if test="${!empty isNull}">
     <table>
@@ -96,7 +96,7 @@
         window.location.href =  "/dengmi/queryDengmi/${pageSize}/" + pageNum + getURIParam();
     }
 
-    function operations(){
+    function turnToPage(){
         var pageNum = document.getElementById("tiaozhuan").value;
         if(pageNum == ""){
             //不进行任何操作

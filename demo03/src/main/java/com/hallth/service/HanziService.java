@@ -8,5 +8,7 @@ public interface HanziService {
 
     List<Hanzi> selectHanzi(Hanzi hanzi);
 
+    int countHanzi(Hanzi hanzi);
+
     int insertList(List<Hanzi> hanziList);
 }

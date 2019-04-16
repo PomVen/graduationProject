@@ -159,23 +159,24 @@
     <include refid="Base_Column_List" />
     from dengmi
     <where>
+      1 = 1
       <if test="mimian != null">
-        mimian like '%' #{mimian, jdbcType=VARCHAR} '%'
+        and mimian like '%' #{mimian, jdbcType=VARCHAR} '%'
       </if>
       <if test="mimu != null">
-        mimu like '%' #{mimu, jdbcType=VARCHAR} '%'
+        and mimu like '%' #{mimu, jdbcType=VARCHAR} '%'
       </if>
       <if test="mige != null">
-        mige like '%' #{mige, jdbcType=VARCHAR} '%'
+        and mige like '%' #{mige, jdbcType=VARCHAR} '%'
       </if>
       <if test="midi != null">
-        midi like '%' #{midi, jdbcType=VARCHAR} '%'
+        and midi like '%' #{midi, jdbcType=VARCHAR} '%'
       </if>
       <if test="zuozhe != null">
-        zuozhe like '%' #{zuozhe, jdbcType=VARCHAR} '%'
+        and zuozhe like '%' #{zuozhe, jdbcType=VARCHAR} '%'
       </if>
       <if test="leixing != null">
-        leixing like '%' #{leixing, jdbcType=VARCHAR} '%'
+        and leixing like '%' #{leixing, jdbcType=VARCHAR} '%'
       </if>
     </where>
     order by dengmi_seq desc

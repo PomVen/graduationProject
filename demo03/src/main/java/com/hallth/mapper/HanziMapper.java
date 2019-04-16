@@ -11,5 +11,7 @@ public interface HanziMapper {
 
     List<Hanzi> selectHanzi(Hanzi hanzi);
 
+    int countHanzi(Hanzi hanzi);
+
     int insertList(List<Hanzi> hanziList);
 }

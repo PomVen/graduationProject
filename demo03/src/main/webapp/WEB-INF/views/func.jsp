@@ -75,7 +75,7 @@
         },{
             id:'5',homePage : '51',menu:[{
                 text:'汉字',items:[
-                    {id:'51',text:'汉字基本查询',href:'/hanzi/hanziQuery'},
+                    {id:'51',text:'汉字基本查询',href:'/hanzi/hanziQueryPage'},
                     {id:'52',text:'汉字笔画查询',href:'/hanzi/bihuaQuery'},
                     {id:'53',text:'汉字义项查询',href:'/hanzi/yixiangQuery'},
                     {id:'54',text:'汉字词组查询',href:'/hanzi/cizuQuery'}

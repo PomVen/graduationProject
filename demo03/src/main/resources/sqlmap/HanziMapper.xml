@@ -62,28 +62,56 @@
   <select id="selectHanzi" resultMap="BaseResultMap">
     select * from hanzi
     <where>
-      1 = 1
+        1 = 1
       <if test="hanzi != null">
-        hanzi = #{hanzi, jdbcType=VARCHAR}
+        and hanzi = #{hanzi, jdbcType=VARCHAR}
       </if>
       <if test="shengmu != null">
-        shengmu = #{shengmu, jdbcType=VARCHAR}
+        and shengmu = #{shengmu, jdbcType=VARCHAR}
       </if>
       <if test="yunmu != null">
-        yunmu = #{yunmu, jdbcType=VARCHAR}
+        and yunmu = #{yunmu, jdbcType=VARCHAR}
       </if>
       <if test="shengdiao != null">
-        shengdiao = #{shengdiao, jdbcType=INTEGER}
+        and shengdiao = #{shengdiao, jdbcType=INTEGER}
       </if>
       <if test="ziyi != null">
-        ziyi = #{ziyi, jdbcType=VARCHAR}
+        and ziyi = #{ziyi, jdbcType=VARCHAR}
       </if>
       <if test="bihuashu != null">
-        bihuashu = #{bihuashu, jdbcType=INTEGER}
+        and bihuashu = #{bihuashu, jdbcType=INTEGER}
       </if>
-      order by shengmu,yunmu,shengdiao
     </where>
+      order by shengmu,yunmu,shengdiao
+      <if test="startSeq != null">
+          limit #{startSeq, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+      </if>
   </select>
+
+    <select id="countHanzi" resultType="java.lang.Integer">
+        select count(*) from hanzi
+        <where>
+            1 = 1
+            <if test="hanzi != null">
+                and hanzi = #{hanzi, jdbcType=VARCHAR}
+            </if>
+            <if test="shengmu != null">
+                and shengmu = #{shengmu, jdbcType=VARCHAR}
+            </if>
+            <if test="yunmu != null">
+                and yunmu = #{yunmu, jdbcType=VARCHAR}
+            </if>
+            <if test="shengdiao != null">
+                and shengdiao = #{shengdiao, jdbcType=INTEGER}
+            </if>
+            <if test="ziyi != null">
+                and ziyi = #{ziyi, jdbcType=VARCHAR}
+            </if>
+            <if test="bihuashu != null">
+                and bihuashu = #{bihuashu, jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
 
   <insert id="insertList" parameterType="java.util.List">
     insert into hanzi

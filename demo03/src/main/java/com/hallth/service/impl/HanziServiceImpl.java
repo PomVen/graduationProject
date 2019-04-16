@@ -18,6 +18,10 @@ public class HanziServiceImpl implements HanziService {
         return hanziMapper.selectHanzi(hanzi);
     }
 
+    public int countHanzi(Hanzi hanzi){
+        return hanziMapper.countHanzi(hanzi);
+    }
+
     public int insertList(List<Hanzi> hanziList){
         return hanziMapper.insertList(hanziList);
     }
