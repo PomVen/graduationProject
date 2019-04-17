@@ -59,6 +59,45 @@ public class DengmiController {
         return "dengmi/sayDengmi";
     }
 
+    @RequestMapping(value = "/louchun", method = {RequestMethod.GET})
+    public String louchunPage(Model model){
+        return "dengmi/louchunJiance";
+    }
+
+    @RequestMapping(value = "/louchunCheck", method = {RequestMethod.GET})
+    public String louchunCheck(String louchunFile, Model model){
+        if(!louchunFile.endsWith("txt")) {
+            model.addAttribute("checkResult","暂不支持此文件类型。");
+            return "dengmi/louchunJiance";
+        }
+        String txtContent = txtUtil.readtxt(louchunFile);
+        String[] lineDatas = txtContent.split("\n");
+        StringBuffer sb = new StringBuffer();
+        int count = 0;
+        for(String line : lineDatas){
+            String[] dengmiDatas = line.split("\t");
+            String mimian = dengmiDatas[0];
+            String midi = dengmiDatas[2];
+            char[] mimianChars = mimian.toCharArray();
+            char[] midiChars = midi.toCharArray();
+            for(char c : midiChars){
+                for(char midiC : mimianChars){
+                    if (c == midiC){
+                        sb.append(line).append("\t露字：" ).append(c).append("\n");
+                        count ++;
+                    }
+                }
+            }
+        }
+        if(count == 0){
+            model.addAttribute("checkResult","一共检测" + lineDatas.length + "条灯谜，无露春。");
+        } else {
+            model.addAttribute("checkResult","一共检测" + lineDatas.length + "条灯谜，露春" + count + "条。");
+            model.addAttribute("louchunDengmi",sb.toString());
+        }
+        return "dengmi/louchunJiance";
+    }
+
     @RequestMapping(value = "/queryMicai", method = {RequestMethod.GET, RequestMethod.POST})
     public String queryMicai(Model model){
         return "dengmi/queryMicai";

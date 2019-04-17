@@ -70,7 +70,8 @@
                     {id:'42',text:'新增灯谜',href:'/dengmi/addDengmiPage'},
                     {id:'43',text:'谜材查询',href:'/dengmi/queryMicai'},
                     {id:'44',text:'论谜赏谜',href:'/dengmi/sayDengmi'},
-                    {id:'45',text:'灯谜教材',href:'/dengmi/teachDengmi'}
+                    {id:'45',text:'灯谜教材',href:'/dengmi/teachDengmi'},
+                    {id:'46',text:'露春检测',href:'/dengmi/louchun'}
                 ]}]
         },{
             id:'5',homePage : '51',menu:[{
