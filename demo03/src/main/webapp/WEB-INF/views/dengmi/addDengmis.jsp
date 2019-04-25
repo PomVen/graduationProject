@@ -16,8 +16,14 @@ ${result}
 <div>
     <form action="/dengmi/addDengmis" name="mulAddDengmiForm" method="get">
         <input name="mulAddFile" type="file" required/><br/>
-        <button type="submit">添加灯谜</button>
+        <button type="submit">添加灯谜</button><a id="path" href="javascript:showPath()">路径查看</a>
     </form>
 </div>
 </body>
 </html>
+<script type="text/javascript">
+    function showPath(){
+        var path = document.getElementById("path").value;
+        console.log(path);
+    }
+</script>

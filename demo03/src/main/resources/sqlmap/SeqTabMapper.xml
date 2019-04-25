@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hallth.mapper.SeqTabMapper" >
+  <resultMap id="BaseResultMap" type="com.hallth.domain.SeqTab" >
+    <result column="tab_name" property="tabName" jdbcType="VARCHAR" />
+    <result column="next_seq" property="nextSeq" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.hallth.domain.SeqTab" >
+    insert into seq_tab (tab_name, next_seq)
+    values (#{tabName,jdbcType=VARCHAR}, #{nextSeq,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hallth.domain.SeqTab" >
+    insert into seq_tab
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tabName != null" >
+        tab_name,
+      </if>
+      <if test="nextSeq != null" >
+        next_seq,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tabName != null" >
+        #{tabName,jdbcType=VARCHAR},
+      </if>
+      <if test="nextSeq != null" >
+        #{nextSeq,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getNextSeq" parameterType="com.hallth.domain.SeqTab" resultType="java.lang.Integer">
+    select next_seq from seq_tab where tab_name = #{tabName,jdbcType=VARCHAR}
+  </select>
+
+  <update id="updateNextSeq" parameterType="com.hallth.domain.SeqTab">
+    update seq_tab set next_seq = #{nextSeq,jdbcType=INTEGER} where tab_name = #{tabName,jdbcType=VARCHAR}
+  </update>
+</mapper>

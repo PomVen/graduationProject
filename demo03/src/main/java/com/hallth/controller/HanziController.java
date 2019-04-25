@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -90,6 +91,26 @@ public class HanziController {
             model.addAttribute("noResult","没有符合条件的查询结果！");
         }
         return model;
+    }
+
+    @RequestMapping(value = {"/modifyHanzi/{hanzi}/{shengdiao}/{yunmu}/{shengmu}"}, method = RequestMethod.GET)
+    public String modifyHanzi(@PathVariable("hanzi") String hanzi,@PathVariable("shengdiao") Integer shengdiao,
+                              @PathVariable("yunmu") String yunmu, @PathVariable("shengmu") String shengmu, Model model){
+        logger.info("修改汉字" + hanzi + "(" +  shengmu + yunmu + shengdiao + ")" + "的信息");
+        Hanzi hanziEntry = new Hanzi();
+        hanziEntry.setHanzi(hanzi);
+        hanziEntry.setShengdiao(shengdiao);
+        if(!shengmu.isEmpty() && !"无".equals(shengmu))
+            hanziEntry.setShengmu(shengmu);
+        hanziEntry.setYunmu(yunmu);
+        hanziEntry = hanziService.selectHanzi(hanziEntry).get(0);
+        model.addAttribute("entry",hanziEntry);
+        return "hanzi/hanziModify";
+    }
+
+    @RequestMapping(value = "/modifyHanzi", method = {RequestMethod.GET})
+    public String modifyHanzi(String hanziM, String shengmuM, String yunmuM, String shengdiao, String ziyi, Model model){
+        return "";
     }
 
 }

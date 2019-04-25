@@ -67,7 +67,12 @@
                     <td class="th1">${item.hanzi}</td>
                     <td class="th1">${item.shengmu}${item.yunmu}${item.shengdiao}</td>
                     <td class="th1">${item.ziyi}</td>
-                    <td class="th1"><a href="/hanzi/modifyHanzi/${item.hanzi}">修改</a></td>
+                    <c:if test="${!empty item.shengmu}">
+                        <td class="th1"><a href="/hanzi/modifyHanzi/${item.hanzi}/${item.shengdiao}/${item.yunmu}/${item.shengmu}">修改</a></td>
+                    </c:if>
+                    <c:if test="${empty item.shengmu}">
+                        <td class="th1"><a href="/hanzi/modifyHanzi/${item.hanzi}/${item.shengdiao}/${item.yunmu}/无">修改</a></td>
+                    </c:if>
                 </tr>
             </c:forEach>
         </table>

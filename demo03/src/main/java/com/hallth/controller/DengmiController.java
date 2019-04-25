@@ -4,7 +4,9 @@ package com.hallth.controller;
 import com.github.pagehelper.Page;
 import com.hallth.domain.Dengmi;
 import com.hallth.service.DengmiService;
+import com.hallth.utils.Constants;
 import com.hallth.utils.ExcelUtil;
+import com.hallth.utils.SeqUtil;
 import com.hallth.utils.TxtUtil;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.log4j.Logger;
@@ -32,6 +34,8 @@ public class DengmiController {
     private TxtUtil txtUtil;
     @Resource
     private ExcelUtil excelUtil;
+    @Resource
+    private SeqUtil seqUtil;
 
     @RequestMapping(value = "/showDengmi", method = {RequestMethod.GET, RequestMethod.POST})
     public String showDengmi(Model model){
@@ -220,7 +224,7 @@ public class DengmiController {
         List<Dengmi> insertList = new ArrayList<Dengmi>();
         int i = 0;
         for(String lineData : lines){
-            Dengmi dengmi = getInsertList(lineData, i);
+            Dengmi dengmi = getInsertList(lineData, Constants.DENGMI_TAB);
             i++;
             insertList.add(dengmi);
         }
@@ -233,16 +237,16 @@ public class DengmiController {
         for(List<StringBuffer> sheetDatas : excelDatas){
             for(int i = 0; i < sheetDatas.size(); i++){
                 StringBuffer rowData=sheetDatas.get(i);
-                Dengmi dengmi = getInsertList(rowData.toString(),i);
+                Dengmi dengmi = getInsertList(rowData.toString(),Constants.DENGMI_TAB);
                 insertList.add(dengmi);
             }
         }
         return insertList;
     }
 
-    public Dengmi getInsertList(String lineData,int i){
+    public Dengmi getInsertList(String lineData,String tabName){
         String[] dengmiMsg = lineData.split("\t");
-        int dengmiSeq = dengmiService.getMaxSeq() + 1 + i;
+        int dengmiSeq = seqUtil.getNextSeq(tabName);
         String mimian = dengmiMsg[0];
         String mimumige = dengmiMsg[1];
 
@@ -258,6 +262,9 @@ public class DengmiController {
         dengmi.setMidi(midi);
         dengmi.setZuozhe(zuozhe);
         return dengmi;
+    }
+    public void getInsertSeqList(){
+
     }
 
     @RequestMapping(value = "/addDengmiSeq")
